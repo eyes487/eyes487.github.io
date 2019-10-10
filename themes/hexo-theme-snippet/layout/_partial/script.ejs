@@ -3,7 +3,6 @@
 <% } %>
 <% if(theme.tagcloud.tag3d){ %>
 <%- js('assets/tagcanvas.min.js?rev=2.9') %>
-<%- js('js/line.js') %>
 <script>
 var tagOption = {
     textColour: '<%= theme.tagcloud.textColour %>', // 字体颜色
@@ -28,4 +27,5 @@ TagCanvas.Start('tag-cloud-3d', '', tagOption);
 <% if(theme.visit_counter.site || theme.visit_counter.page){ %>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <% } %>
+<%- js('js/line.js?rev=@@hash') %>
 <%- js('js/app.js?rev=@@hash') %>
