@@ -29,14 +29,12 @@
 html {
   color: #505050;
   line-height: 1.75em;
-  background: #dbf0f1;
   position: relative;
   font-family: "黑体", sans-serif;
 }
 body {
   color: #505050;
   line-height: 1.75em;
-  background: rgba(219, 240, 241, 0.2);
   position: relative;
   font-family: "黑体", sans-serif;
   cursor: url('../../img/cursor.ico'), auto;
