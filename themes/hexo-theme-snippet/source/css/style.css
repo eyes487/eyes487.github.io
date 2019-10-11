@@ -679,15 +679,15 @@ pre {
   padding: 0;
 }
 .post-content code {
-  color: #808080;
+  color: #ff8140;
   font-size: 0.96em;
-  background-color: #f9f9f9;
+  background-color: #f9f2f4;
   padding: 1px 2px;
   border: 1px solid #dadada;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
   word-wrap: break-word;
 }
 .post-content tt {
@@ -699,7 +699,7 @@ pre {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
   word-wrap: break-word;
 }
 .post-content pre {
@@ -709,7 +709,7 @@ pre {
   padding-left: 10px;
   overflow: auto;
   line-height: 1.5;
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: PingFangSC-Regular, 'Roboto', Verdana, "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
   color: #808080;
   background-color: #f9f9f9;
 }
