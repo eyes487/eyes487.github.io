@@ -293,6 +293,9 @@ pre {
   -webkit-background-size: cover;
   background-size: cover;
 }
+.content-wrap {
+  min-height: calc(100vh - 349px);
+}
 /* main-navigation */
 .main-navigation {
   text-align: center;
