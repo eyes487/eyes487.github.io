@@ -1,8 +1,9 @@
 <% if (theme.carousel.img) { %>
 <div class="carousel">
-    <a href="<%= theme.carousel.url %>" target="_blank">
+    <!-- <a href="<%= theme.carousel.url %>" target="_blank">
         <img src="<%- url_for(theme.carousel.img) %>" alt="">
-    </a>
+    </a> -->
+    <canvas class="canvas" style="width: 100%;height: 188px"></canvas>
 </div>
 <% } %>
 <% if(page.posts && page.posts.length){ %>
