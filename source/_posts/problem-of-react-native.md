@@ -93,7 +93,7 @@ native-echarts中使用echarts的办法是通过`Webview`中引用html文件实�
 
 ## 5.ios出现 Build input file cannot be found: '/Users/mac/Library/Developer/Xcode/DerivedData/jty-ceemylpddhxuyyegcppypjhihevw/Build/Products/Debug-iphonesimulator/jty.app/PlugIns/jtyTests.xctest/jtyTests'
 
-![问题](http://m.qpic.cn/psb?/V13OcEes1osvm8/H.MJWiImNoHf0xJVocb4UQiLeHCkuE.YPbsUDDV1ROQ!/b/dMMAAAAAAAAA&bo=dQSCAwAAAAARJ.A!&rf=viewer_4  "图1")
+![问题](http://i.caigoubao.cc/626712/eyes487/ios1.jpg "图1")
 
 解决方法：
 Xcode > File > Workspace Settings...

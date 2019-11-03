@@ -22,7 +22,7 @@ createElement('ul',{ class: 'list'},[
  ])
  ```
 虚拟DOM就是通过上面这样一个方法，创建的一个js对象，如下：
-![虚拟DOM](http://m.qpic.cn/psb?/V13OcEes1osvm8/mg6dtPyS5RM0Ayux*eLsbGeyue3P6trlI9cP6BbACng!/b/dL8AAAAAAAAA&bo=TwMkAQAAAAADB0s!&rf=viewer_4  "图1")
+![虚拟DOM](http://i.caigoubao.cc/626712/eyes487/v-dom.png  "图1")
 
 ### 1.2 创建虚拟DOM
 
@@ -221,7 +221,7 @@ let patches = Diff(virtualDom1,virtualDom2)
 console.log(patches) //===>打印出补丁包
 ```
 补丁包如下 图2
-![补丁包](http://m.qpic.cn/psb?/V13OcEes1osvm8/1L2IXN9tZrgp8Cq4QBuF27LhbV1VdtTvBWZW10iRHuw!/b/dL8AAAAAAAAA&bo=jgOJAQAAAAADByc!&rf=viewer_4 "图2")
+![补丁包](http://i.caigoubao.cc/626712/eyes487/diff.png "图2")
 
 ### 2.4 把补丁包应用到真实DOM上
 
