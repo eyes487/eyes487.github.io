@@ -51,7 +51,7 @@ date: 2019-10-20
 >运行宏任务的时候，可能又会产生微任务，在执行完毕这次宏任务，又会查询是否有微任务需要执行。
 
 使用一张从网上寻找的图片表示
-![浏览器中的 EventLoop](https://images.cnblogs.com/cnblogs_com/xmxxn/1582464/o_191105074816eventloop1.png  "图1")
+![浏览器中的 EventLoop](http://fs.eyes487.top:9999/uploads/1573386573224-eventloop1.png  "图1")
 
 
 ## 1.3 示例
@@ -164,7 +164,7 @@ Promise.resolve().then(() => console.log(4));
 
 事件循环会按照顺序，反复地执行。每个阶段都有一个先进先出的回调函数队列。只有一个阶段的回调函数队列清空了，该执行的回调函数都执行了，事件循环才会进入下一个阶段。
 
-![Node中的 EventLoop](https://images.cnblogs.com/cnblogs_com/xmxxn/1582464/o_191105074826eventloop2.jpg  "图2")
+![Node中的 EventLoop](http://fs.eyes487.top:9999/uploads/1573386585444-eventloop2.jpg  "图2")
 
 ### 2.2.1 timers
 

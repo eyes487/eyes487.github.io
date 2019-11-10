@@ -93,7 +93,7 @@ native-echarts中使用echarts的办法是通过`Webview`中引用html文件实�
 
 ## 5.ios出现 Build input file cannot be found: '/Users/mac/Library/Developer/Xcode/DerivedData/jty-ceemylpddhxuyyegcppypjhihevw/Build/Products/Debug-iphonesimulator/jty.app/PlugIns/jtyTests.xctest/jtyTests'
 
-![ios问题](https://images.cnblogs.com/cnblogs_com/xmxxn/1582464/o_191105074831ios1.jpg "图1")
+![ios问题](http://fs.eyes487.top:9999/uploads/1573386594646-ios1.jpg "图1")
 
 解决方法：
 Xcode > File > Workspace Settings...
@@ -105,7 +105,7 @@ Shared Project Settings和Per-User Project Settings 中的Build System都从New 
 
 ## 6. react-native 从0.57.8升级到0.59.10，在Android中运行，出现  Could not get unknown property 'mergeResourcesProvider' for object of type com.android.build.gradle.internal.api.ApplicationVariantImpl.
 
-![Android问题](https://images.cnblogs.com/cnblogs_com/xmxxn/1582464/o_191105103749Android1.png "图2")
+![Android问题](http://fs.eyes487.top:9999/uploads/1573386561035-Android1.png "图2")
 
 解决方法：
 /android/build.gradle  改为classpath 'com.android.tools.build:gradle:3.3.0'

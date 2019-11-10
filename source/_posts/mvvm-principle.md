@@ -9,7 +9,7 @@ date: 2019-09-10
 
 简单来说，`MVVM`就是一种模式，把**数据和视图进行关联**的一种模式。最常见的就是应用于`Vue`中，实现了数据绑定和试图渲染，Vue中主要通过`表单元素`设置`v-model`属性实现双向绑定。
 放一张从网上找的图
-![mvvm](https://images.cnblogs.com/cnblogs_com/xmxxn/1582464/o_191105074838MVVM.png  "MVVM")
+![mvvm](http://fs.eyes487.top:9999/uploads/1573386600928-MVVM.png  "MVVM")
 
 Vue中一般这样引用
 ```html
