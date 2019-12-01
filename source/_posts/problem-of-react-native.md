@@ -112,3 +112,48 @@ Shared Project Settings和Per-User Project Settings 中的Build System都从New 
 /android/gradle/wrapper/grale-wrapper.properties 改为 distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip
 
 运行有可能会出错，记得清理一下缓存 cd android && gradlew clean
+
+## 7 Android9.0 http无法访问网络问题
+先说前提背景，首次使用react-native 0.60.5版本建立项目，在手机上调试的时候没有问题，打包安装在手机上出现闪退。
+在Android studio中Logcat上看到闪退报错信息：
+### 7.1  .com.facebook.react.common.JavascriptException: console.assert is not a function. (In 'console.assert(null!=o,"'this' is expected an Event object, but got",n)', 'console.assert' is undefined), stack:
+    o@112:173
+    w@112:1841
+    dispatchEvent@112:5597
+    value@111:6095
+    value@111:2835
+    value@44:1280
+    value@23:3518
+    <unknown>@23:822
+    value@23:2772
+    value@23:794
+    value@-1
+![Stack问题](http://fs.eyes487.top:9999/uploads/1575181213971-stack.png "图3")
+解决办法：参考的 [这里](https://github.com/facebook/react-native/issues/26007)
+
+添加如下信息在 index.js中
+```js
+if (!__DEV__) {
+    global.console = {
+        info: () => {},
+        log: () => {},
+        assert: () => {},
+        warn: () => {},
+        debug: () => {},
+        error: () => {},
+        time: () => {},
+        timeEnd: () => {},
+    };
+}
+```
+
+通过这些操作，app不闪退了，但是页面还是没有如期显示，是因为并没有访问到网络，没有拿到后台的数据，
+
+### 7.2  在网上搜索了一下，发现是`Android 9`会出现这个问题，我在Android 8测试了一下，发现是的，不会出现这个问题。
+
+解决方法：
+* APP改用 `https` 请求
+* `targetSdkVersion` 降到27以下
+* 在 `AndroidManifest.xml` 文件的 `application` 加入：`android:usesCleartextTraffic="true"`
+
+我采用的是第三种方法
