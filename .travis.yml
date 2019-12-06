@@ -18,7 +18,7 @@ after_script:
     - cd ./public
     - git init
     - git config user.name "xm" # 修改name
-    - git config user.email "xiao.mei@frontsurf.com" # 修改email
+    - git config user.email "659721336@qq.com" # 修改email
     - git add .
     - git commit -m "Travis CI Auto Builder"
     - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master # GH_TOKEN是在Travis中配置token的名称
