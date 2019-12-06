@@ -22,7 +22,7 @@ after_script:
     - git add .
     - git commit -m "Travis CI Auto Builder"
     - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master # GH_TOKEN是在Travis中配置token的名称
-    - git push --force --quiet "https://eyes487:${Coding_Token}@${CO_REF}" master:master # Coding_Token是在Travis中配置coding平台的token名称
+    - git push --force --quiet "https://jNjbUNCwnz:${Coding_Token}@${CO_REF}" master:master # Coding_Token是在Travis中配置coding平台的token名称
 
 branches:
     only:

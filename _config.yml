@@ -80,6 +80,6 @@ theme: hexo-theme-snippet
 deploy:
   type: git
   repo: 
-      # github: https://github.com/eyes487/eyes487.github.io
+      github: https://github.com/eyes487/eyes487.github.io
       coding: https://e.coding.net/eyes487/eyes487.coding.me.git
   branch: master
