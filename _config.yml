@@ -79,5 +79,7 @@ theme: hexo-theme-snippet
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/eyes487/eyes487.github.io
+  repo: 
+      # github: https://github.com/eyes487/eyes487.github.io
+      coding: https://e.coding.net/eyes487/eyes487.coding.me.git
   branch: master
