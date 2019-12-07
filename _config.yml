@@ -78,12 +78,12 @@ theme: hexo-theme-snippet
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo: 
       github: https://github.com/eyes487/eyes487.github.io
       coding: https://e.coding.net/eyes487/eyes487.coding.me.git
   branch: master
-  type: baidu_url_submitter
+- type: baidu_url_submitter
 
 baidu_url_submit:
   count: 100 # 提交最新的一个链接
