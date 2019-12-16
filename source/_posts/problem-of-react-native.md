@@ -157,3 +157,16 @@ if (!__DEV__) {
 * 在 `AndroidManifest.xml` 文件的 `application` 加入：`android:usesCleartextTraffic="true"`
 
 我采用的是第三种方法
+
+### 8. Attempt to invoke virtual method 'android.graphics.drawable.Drawable android.graphics.drawable.Drawable$ConstantState.newDrawable(android.content.res.Resources)' on a null object reference
+
+使用场景：`react-native 0.57.8`  `Android 9`
+我在页面中，使用`TextInput`放入表格中的每个单元格，就出现了这个问题，其他时候是没有出现这个问题的
+
+![drawable问题](http://fs.eyes487.top:9999/uploads/1576468673838-drawable.png "图4")
+
+解决方法： 在 `android/src/main/res/values/styles.xml` 插入这句
+```js
+<item name="android:editTextBackground">@android:color/transparent</item>
+```
+[参考地址](https://github.com/facebook/react-native/issues/17530)
