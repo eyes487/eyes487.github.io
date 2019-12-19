@@ -158,7 +158,7 @@ if (!__DEV__) {
 
 我采用的是第三种方法
 
-### 8. Attempt to invoke virtual method 'android.graphics.drawable.Drawable android.graphics.drawable.Drawable$ConstantState.newDrawable(android.content.res.Resources)' on a null object reference
+## 8. Attempt to invoke virtual method 'android.graphics.drawable.Drawable android.graphics.drawable.Drawable$ConstantState.newDrawable(android.content.res.Resources)' on a null object reference
 
 使用场景：`react-native 0.57.8`  `Android 9`
 我在页面中，使用`TextInput`放入表格中的每个单元格，就出现了这个问题，其他时候是没有出现这个问题的

@@ -28,8 +28,8 @@ gulp.task('less',function () {
 });
 ```
 ### 1.2 CSS Sprites
-推荐自动生成雪碧图的工具: [href="https://www.toptal.com/developers/css/sprite-generator"](href="https://www.toptal.com/developers/css/sprite-generator")
-webpack 中有一款生成雪碧图的插件，[webpack-spritesmith](href="https://www.npmjs.com/package/webpack-spritesmith"),会自动帮你生成调用雪碧图的css样式
+推荐自动生成雪碧图的工具: [https://www.toptal.com/developers/css/sprite-generator](https://www.toptal.com/developers/css/sprite-generator)
+webpack 中有一款生成雪碧图的插件，[webpack-spritesmith](https://www.npmjs.com/package/webpack-spritesmith),会自动帮你生成调用雪碧图的css样式
 
 ### 1.3 http缓存
 
