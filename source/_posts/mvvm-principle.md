@@ -7,7 +7,8 @@ date: 2019-09-10
 
 ## 1.什么是MVVM
 
-简单来说，`MVVM`就是一种模式，把**数据和视图进行关联**的一种模式。最常见的就是应用于`Vue`中，实现了数据绑定和试图渲染，Vue中主要通过`表单元素`设置`v-model`属性实现双向绑定。
+简单来说，`MVVM`就是一种模式，把**数据和视图进行关联**的一种模式。最常见的就是应用于`Vue`中，实现了数据绑定和视图渲染，Vue 最独特的特性之一，是其非侵入性的响应式系统，当数据变化时，视图会做出相应的更新，当视图变化，数据也会相应更新，主要体现在Vue中双向绑定，主要通过`表单元素`设置`v-model`属性实现双向绑定。
+
 放一张从网上找的图
 ![mvvm](http://fs.eyes487.top:9999/uploads/1573386600928-MVVM.png  "MVVM")
 
@@ -26,10 +27,20 @@ Vue中一般这样引用
     })
 </script>
 ```
-了解Vue的朋友，一般都知道这些，这里对理论就不做过多阐述了，今天主要用代码实现MVVM原理。
+
+## 2.响应式原理分析
+![Vue](http://fs.eyes487.top:9999/uploads/1578459289806-Vue响应式原理.jpg  "Vue")
+
+* 1、首先通过new Vue()执行初始化，对数据进行数据劫持 `Observer`，同时执行编译模板 `Compile`
+* 2、在`Observer`中通过 `Object.defineProperty / Proxy`对数据进行劫持，其中有 `get` 和 `set`方法 ,在get中为每个key值创建一个`Dep`(依赖收集)
+* 3、在 `Compile` 中执行模板编译的时候，可以知道哪些数据是动态绑定的，为每个数据创建一个`Watcher`，里面放的是数据的更新方法(`Updater`)
+* 4、在创建这个Watcher的时候，可以通过`Dep.target = this`,把Watcher先保存下来，触发get方法把Watcher收进Dep中 ，通过`dep.addSub()`方法，在置空`Dep.target`
+* 5、依赖收集完毕，在set方法中，设置新值的时候会触发set方法,设置`dep.notify()`通知所有更新方法更新,就完成了整个响应过程
 
 
-## 2.Vue中的双向绑定
+所以数据key值，Dep, Watcher 是一对一对多的关系，每个数据值都有一个Dep(相当于管家)，里面管理着多个Watcher，数据在页面上引用一次，就会产生一个Watcher
+
+## 3.Vue中的数据响应化实现
 
 要实现数据双向绑定主要有三个核心点：
 * 模板的编译
@@ -272,6 +283,7 @@ class Observer{
             enumerable: true, //可枚举
             configurable: true, //可修改
             get(){ //当取值的时候调用的方法
+                // 收集依赖   在创建Watcher的时候，会将watcher赋值给Dep.target,所以可以将他加入依赖中
                 Dep.target && dep.addSub(Dep.target)
                 return value;
             },
@@ -334,7 +346,7 @@ class Watcher{
 }
 ```
 
-## 3. Proxy
+## 4. Proxy
 
 在`Vue3.0`中将会使用Proxy实现数据的双向绑定，`Proxy` 是` ES6` 中新增的功能，它可以用来自定义对象中的操作。
 
@@ -343,6 +355,7 @@ class Watcher{
 let p = new Proxy(target, handler);
 //target    用Proxy包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
 //handlew   一个对象，其属性是当执行一个操作时定义代理的行为的函数。
+
 ```
 数据劫持的简单实现
 ```js
@@ -373,4 +386,12 @@ console.log(proxy.message) // hello world
 proxy.message = 'my name is eyes487' // 支持新增属性
 console.log(proxy.message) // 模拟视图的更新 my name is eyes487
 ```
-用这种方法，代码可以精简很多，但目前proxy兼容性还不是很好。
+用这种方法的优点：
+* defineProperty只能监听某个属性，不能对全对象监听
+* 不会对源对象进行污染，代理返回了一个新的对象
+* 可以省去循环，提升效率
+* 乐意监听数组，不用再去对单独的随想做特异性操作
+* 代码可以精简很多
+**但目前proxy兼容性还不是很好**
+
+[源码地址](https://github.com/eyes487/vue-start/tree/master/src/components/mvvm)
