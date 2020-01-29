@@ -233,6 +233,7 @@
 
 <ul>
 <li>终于在这个文件中找到了Vue构造函数，里面只执行了<code>init</code>方法，init方法是通过initMixin()给Vue添加_init方法</li>
+<li>同时，也添加了很多实例方法</li>
 </ul>
 <p>在init.js文件中initMixin()方法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主要代码</span></span><br><span class="line">    vm._self = vm</span><br><span class="line">    initLifecycle(vm)  <span class="comment">// $parent, $root, $children, $refs</span></span><br><span class="line">    initEvents(vm)     <span class="comment">// 对父组件传入事件添加监听</span></span><br><span class="line">    initRender(vm)     <span class="comment">// 声明$slots,$createElement()</span></span><br><span class="line">    callHook(vm, <span class="string">'beforeCreate'</span>) <span class="comment">// 调用beforeCreate钩子</span></span><br><span class="line">    initInjections(vm) <span class="comment">// 注入数据</span></span><br><span class="line">    initState(vm)      <span class="comment">// 重要：数据初始化，响应式</span></span><br><span class="line">    initProvide(vm) <span class="comment">// 提供数据</span></span><br><span class="line">    callHook(vm, <span class="string">'created'</span>)</span><br></pre></td></tr></table></figure>
@@ -243,6 +244,7 @@
 
 <p>就可以通过断点在浏览器中看到执行的过程了，如果想看某个方法具体执行了什么，就进入该方法查看，从开始到浏览器渲染完成，就是整个渲染流程所执行的过程。<br><img src="http://fs.eyes487.top:9999/uploads/1580122844391-vue-tiaoshi.png" alt="Vue调试步骤" title="图2"></p>
 <p>Vue源码解读方法，差不多就是这样了，之后会有具体文章分析Vue的重要实现过程。</p>
+<p>目录<br>《Vue源码解析（一）：如何解读源码》<br><a href="https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-02.html">《Vue源码解析（二）：new Vue() 初始化流程》</a><br><a href="https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-03.html">《Vue源码解析（三）：数据响应式》</a></p>
 
     </div>
     
@@ -260,6 +262,12 @@
     </div>
 </article>
 <div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/01/27/vue-sourcec-analyse-02.html" class="pre-post btn btn-default" title='Vue源码解析（二）：new Vue() 初始化流程'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Vue源码解析（二）：new Vue() 初始化流程</span>
+    </a>
     
     
     <a href="/2019/12/07/one-time-optimization.html" class="next-post btn btn-default" title='记一次性能优化，从六七秒优化到1.35s'>
