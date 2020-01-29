@@ -205,6 +205,7 @@ export default Vue
 ```
 
 * 终于在这个文件中找到了Vue构造函数，里面只执行了`init`方法，init方法是通过initMixin()给Vue添加_init方法
+* 同时，也添加了很多实例方法
 
 在init.js文件中initMixin()方法
 ```js
@@ -247,3 +248,8 @@ export default Vue
 ![Vue调试步骤](http://fs.eyes487.top:9999/uploads/1580122844391-vue-tiaoshi.png "图2")
 
 Vue源码解读方法，差不多就是这样了，之后会有具体文章分析Vue的重要实现过程。
+
+目录
+《Vue源码解析（一）：如何解读源码》
+[《Vue源码解析（二）：new Vue() 初始化流程》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-02.html)
+[《Vue源码解析（三）：数据响应式》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-03.html)
