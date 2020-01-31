@@ -390,13 +390,15 @@ update () {
     if (this.lazy) {
       this.dirty = true
     } else if (this.sync) {
+      /*同步则执行run直接渲染视图*/
       this.run()
     } else {
+      /*异步推送到观察者队列中，下一个tick时调用。*/
       queueWatcher(this)
     }
   }
 ```
-`queueWatcher`,更新队列，使用了一部更新方法，之后会有专门的文章讲解
+`queueWatcher`,更新队列，使用了异步更新方法，之后会有专门的文章讲解
 
 看完Watcher的实现过程，就查找一下Watcher是在哪里调用的呢，上一篇文章说到了，在`mountComponent`函数中
 ```js
