@@ -215,8 +215,8 @@
 </ul>
 <p>常见属于微任务的有：</p>
 <ul>
-<li><code>new Promise</code></li>
-<li><code>new MutaionObserver()</code></li>
+<li><code>Promise</code></li>
+<li><code>MutaionObserver</code>，是H5的新特性</li>
 <li><code>Object.observe</code>(废弃)</li>
 </ul>
 <p>在事件循环中，每进行一次循环操作称为tick</p>
@@ -324,6 +324,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'test.js'</span>, () =&gt; &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">1</span>));</span><br><span class="line">  setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="number">2</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>代码会先进入 I/O callbacks 阶段，然后是 check 阶段，最后才是 timers 阶段。因此，setImmediate才会早于setTimeout执行。</p>
+<p>————-如果以上内容有不对的地方，欢迎大家指正————</p>
 <p>Node中的事件循环参考<br><a href="http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html" target="_blank" rel="noopener">《Node 定时器详解》</a><br><a href="https://cnodejs.org/topic/5a9108d78d6e16e56bb80882" target="_blank" rel="noopener">《不要混淆nodejs和浏览器中的event loop》</a></p>
 
     </div>

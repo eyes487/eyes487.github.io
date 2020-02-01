@@ -156,6 +156,29 @@
     <div class="post-content">
         <div class="post-head home-post-head">
             <h1 class="post-title">
+                <a href="/2020/01/29/vue-sourcec-analyse-04.html">
+                    Vue源码解析（四）：Vue批量异步更新策略</a>
+            </h1>
+            <div class="post-meta fa-wrap">
+                <span class="fa fa-calendar"></span>
+                <time class="post-date" datetime="" title="">
+                    2020年01月29日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            
+            Vue页面中会存在多个组件，每个组件对应着一个Watcher，当页面中多个组件发生变化的时候，最好的办法就是把组件批量的更新，然后在一次性刷新页面，这样效率极高。这样想到了用微任务,会在同一次事件循环(tick)中执行完，然后在刷新页...
+            
+        </p>
+    </div>
+</article>
+
+<article class="post">
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
                 <a href="/2020/01/28/vue-sourcec-analyse-03.html">
                     Vue源码解析（三）：数据响应式</a>
             </h1>
@@ -296,7 +319,7 @@ Vue 最独特的特性之一，是其非侵入性的响应式系统。数据模�
     <h3 class="title">
         分类
     </h3>
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">10</span></li></ul>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">11</span></li></ul>
 </div>
 
     
@@ -305,7 +328,7 @@ Vue 最独特的特性之一，是其非侵入性的响应式系统。数据模�
     <h3 class="title">
         归档
     </h3>
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/"><i class="fa" aria-hidden="true">2020年01月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><i class="fa" aria-hidden="true">2019年12月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/"><i class="fa" aria-hidden="true">2019年10月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><i class="fa" aria-hidden="true">2019年09月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><i class="fa" aria-hidden="true">2019年08月</i></a><span class="archive-list-count">1</span></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/"><i class="fa" aria-hidden="true">2020年01月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><i class="fa" aria-hidden="true">2019年12月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/"><i class="fa" aria-hidden="true">2019年10月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><i class="fa" aria-hidden="true">2019年09月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><i class="fa" aria-hidden="true">2019年08月</i></a><span class="archive-list-count">1</span></li></ul>
 </div>
 
     

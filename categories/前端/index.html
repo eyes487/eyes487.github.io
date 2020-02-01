@@ -155,6 +155,29 @@
     <div class="post-content">
         <div class="post-head home-post-head">
             <h1 class="post-title">
+                <a href="/2020/01/29/vue-sourcec-analyse-04.html">
+                    Vue源码解析（四）：Vue批量异步更新策略</a>
+            </h1>
+            <div class="post-meta fa-wrap">
+                <span class="fa fa-calendar"></span>
+                <time class="post-date" datetime="" title="">
+                    2020年01月29日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            
+            Vue页面中会存在多个组件，每个组件对应着一个Watcher，当页面中多个组件发生变化的时候，最好的办法就是把组件批量的更新，然后在一次性刷新页面，这样效率极高。这样想到了用微任务,会在同一次事件循环(tick)中执行完，然后在刷新页...
+            
+        </p>
+    </div>
+</article>
+
+<article class="post">
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
                 <a href="/2020/01/28/vue-sourcec-analyse-03.html">
                     Vue源码解析（三）：数据响应式</a>
             </h1>
@@ -364,31 +387,12 @@ js是...
     </div>
 </article>
 
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/08/24/analyse-of-this.html">
-                    浅谈this指向</a>
-            </h1>
-            <div class="post-meta fa-wrap">
-                <span class="fa fa-calendar"></span>
-                <time class="post-date" datetime="" title="">
-                    2019年08月24日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-            本文出自 《你不知道的js》，看过之后总是容易忘记，所以总结记录一下。
-1.this到底是什么
-this是在 运行时 绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this绑定和函数声明的位置没有任何关系，只取决于...
-            
-        </p>
-    </div>
-</article>
 
+<nav class="pagination" role="navigation">
+    <div id="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/categories/前端/page/2/">2</a><a class="extend next" rel="next" href="/categories/前端/page/2/"><i class='fa fa-angle-right'></i></a>
+    </div>
+</nav>
 
                 </main>
                 
@@ -461,7 +465,7 @@ this是在 运行时 绑定的，并不是在编写时绑定，它的上下文�
     <h3 class="title">
         分类
     </h3>
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">10</span></li></ul>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">11</span></li></ul>
 </div>
 
     
@@ -470,7 +474,7 @@ this是在 运行时 绑定的，并不是在编写时绑定，它的上下文�
     <h3 class="title">
         归档
     </h3>
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/"><i class="fa" aria-hidden="true">2020年01月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><i class="fa" aria-hidden="true">2019年12月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/"><i class="fa" aria-hidden="true">2019年10月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><i class="fa" aria-hidden="true">2019年09月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><i class="fa" aria-hidden="true">2019年08月</i></a><span class="archive-list-count">1</span></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/"><i class="fa" aria-hidden="true">2020年01月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><i class="fa" aria-hidden="true">2019年12月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/"><i class="fa" aria-hidden="true">2019年10月</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><i class="fa" aria-hidden="true">2019年09月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/"><i class="fa" aria-hidden="true">2019年08月</i></a><span class="archive-list-count">1</span></li></ul>
 </div>
 
     
