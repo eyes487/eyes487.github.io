@@ -39,8 +39,8 @@ date: 2019-10-20
 * `history.back`
 
 常见属于微任务的有：
-* `new Promise`
-* `new MutaionObserver()`
+* `Promise`
+* `MutaionObserver`，是H5的新特性
 * `Object.observe`(废弃)
 
 在事件循环中，每进行一次循环操作称为tick
@@ -265,6 +265,8 @@ fs.readFile('test.js', () => {
 ```
 代码会先进入 I/O callbacks 阶段，然后是 check 阶段，最后才是 timers 阶段。因此，setImmediate才会早于setTimeout执行。
 
+
+-------------如果以上内容有不对的地方，欢迎大家指正------------
 
 Node中的事件循环参考 
 [《Node 定时器详解》](http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html)

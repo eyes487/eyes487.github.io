@@ -253,3 +253,4 @@ Vue源码解读方法，差不多就是这样了，之后会有具体文章分�
 《Vue源码解析（一）：如何解读源码》
 [《Vue源码解析（二）：new Vue() 初始化流程》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-02.html)
 [《Vue源码解析（三）：数据响应式》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-03.html)
+[《Vue源码解析（四）：Vue批量异步更新策略》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-04.html)
