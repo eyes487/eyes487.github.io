@@ -59,7 +59,7 @@ update () {
       queueWatcher(this)
     }
 }
-````
+```
 其中有一些配置，比如`lazy`、`sync`，但是一般都不会设置，最主要的是`queueWatcher`，把左右Watcher添加进一个观察者对列,下面看看它的具体实现代码
 ```js
 //observer/scheduler.js
@@ -72,8 +72,8 @@ export function queueWatcher (watcher: Watcher) {
     if (!flushing) {
       queue.push(watcher)
     } else {
-      // if already flushing, splice the watcher based on its id
-      // if already past its id, it will be run next immediately.
+     //如果已经刷新，则根据其ID拼接观察者
+      //如果已经超过其ID，它将立即立即运行。 
       let i = queue.length - 1
       while (i > index && queue[i].id > watcher.id) {
         i--
@@ -95,7 +95,7 @@ export function queueWatcher (watcher: Watcher) {
   }
 }
 
-````
+```
 每个watcher都有一个id，要判断id是否存在于对列中，如果存在就不用入队了，有效地防止重复操作，然后执行`nextTick`,异步刷新对列，`flushSchedulerQueue`是一个函数，作用是循环执行`queue`中Watcher的run函数，用来更新视图,作为回调函数传入`nextTick`
 看看它的具体实现
 ```js
@@ -160,7 +160,7 @@ function flushSchedulerQueue () {
     devtools.emit('flush')
   }
 }
-````
+```
 
 ### 2.2 nextTick
 
@@ -193,7 +193,7 @@ export function nextTick (cb?: Function, ctx?: Object) {
     })
   }
 }
-````
+```
 
 这里主要是，把回调函数放入`callbacks`对列中，执行异步函数`timerFunc()`
 
@@ -206,11 +206,11 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   timerFunc = () => {
     // 启动一个微任务
     p.then(flushCallbacks)
-    // In problematic UIWebViews, Promise.then doesn't completely break, but
-    // it can get stuck in a weird state where callbacks are pushed into the
-    // microtask queue but the queue isn't being flushed, until the browser
-    // needs to do some other work, e.g. handle a timer. Therefore we can
-    // "force" the microtask queue to be flushed by adding an empty timer.
+    //在有问题的UIWebViews中，Promise.then不会完全中断，但是
+    //它可能会陷入怪异的状态，在这种状态下，回调被推入
+    //微任务队列，但是直到浏览器才刷新队列
+    //需要做一些其他工作，例如处理一个计时器。因此，我们可以
+    //通过添加空计时器来“强制”刷新微任务队列。
     if (isIOS) setTimeout(noop)
   }
   isUsingMicroTask = true
@@ -219,9 +219,9 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   // PhantomJS and iOS 7.x
   MutationObserver.toString() === '[object MutationObserverConstructor]'
 )) {
-  // Use MutationObserver where native Promise is not available,
-  // e.g. PhantomJS, iOS7, Android 4.4
-  // (#6466 MutationObserver is unreliable in IE11)
+  //在本地Promise不可用的地方使用MutationObserver，
+  //例如PhantomJS，iOS7，Android 4.4
+  //（＃6466 MutationObserver在IE11中不可靠）
   let counter = 1
   const observer = new MutationObserver(flushCallbacks)
   const textNode = document.createTextNode(String(counter))
@@ -234,9 +234,9 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   }
   isUsingMicroTask = true
 } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
-  // Fallback to setImmediate.
-  // Techinically it leverages the (macro) task queue,
-  // but it is still a better choice than setTimeout.
+  //回退到setImmediate。
+  //从技术上讲，它利用了（宏）任务队列，
+  //，但它仍然是比setTimeout更好的选择。 
   timerFunc = () => {
     setImmediate(flushCallbacks)
   }
@@ -246,7 +246,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
     setTimeout(flushCallbacks, 0)
   }
 }
-````
+```
 在这个函数中，它会判断，看浏览器是否支持Promise，就启动一个微任务执行`flushCallbacks`，不支持就会做降级处理，主要是考虑到浏览器兼容性，按照`Promise`、`MutationObserver`、`setImmediate`、`setTimeout`这样的顺序，前两个是`微任务`，后两个是`宏任务`，`微任务`是首选，最后不得已要使用`宏任务`。我们知道`微任务`会在页面刷新之前执行完，使用`微任务`就可以比使用`宏任务`少执行一次`UI 渲染`
 
 ### 2.4 flushCallbacks
@@ -261,7 +261,7 @@ function flushCallbacks () {
     copies[i]()
   }
 }
-````
+```
 会把之前`callbacks`队列中存放的所有回调函数全部取出来执行一遍，也就完成了整个刷新过程。
 
 一直都知道，尽可能少的操作Dom，Vue批量异步更新也是如何，把所有要更新的数据都更新完了，在一次性刷新页面，这样效率是极高的，所以异步更新视图是极有必要的。
@@ -277,3 +277,4 @@ function flushCallbacks () {
 [《Vue源码解析（二）：new Vue() 初始化流程》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-02.html)
 [《Vue源码解析（三）：数据响应式》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-03.html)
 《Vue源码解析（四）：Vue批量异步更新策略》
+[《Vue源码解析（五）：虚拟dom和diff算法》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-05.html)

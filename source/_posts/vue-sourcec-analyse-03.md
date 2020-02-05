@@ -206,7 +206,7 @@ methodsToPatch.forEach(function (method) {
     return result
   })
 })
-````
+```
 下面看看defineReacive里做了什么
 
 ```js
@@ -324,6 +324,9 @@ export default class Dep {
       // subs aren't sorted in scheduler if not running async
       // we need to sort them now to make sure they fire in correct
       // order
+      //如果未运行异步，则不会在调度程序中对子进行排序
+      //我们现在需要对其进行排序，以确保其正确触发
+      //订单 
       subs.sort((a, b) => a.id - b.id)
     }
     for (let i = 0, l = subs.length; i < l; i++) {
@@ -410,7 +413,7 @@ new Watcher(vm, updateComponent, noop, {
       }
     }
   }, true /* isRenderWatcher */)
-````
+```
 在页面渲染的时候，就会创建一个Watcher，所以一个组件只有一个Watcher，同一组件的每个key值收集的Watcher都会是同一个，所有有key值变化，都会触发整个组件的Watcher更新，但是虚拟dom和diff算法(之后会讲)会帮我们精确计算，要更新的部分。
 
 ## 5.Compiler
@@ -428,7 +431,7 @@ compiler里面代码比较复杂，之后再虚拟dom的时候一起讲解。
 * Compiler: 对每个元素节点进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数。解析数据的时候就会触发`get`函数
 
 
--------------如果以上内容有不对的地方，欢迎大家指正------------
+-------------如果以上内容有不对的地方，还请大家指正------------
 
 
 目录
@@ -436,3 +439,4 @@ compiler里面代码比较复杂，之后再虚拟dom的时候一起讲解。
 [《Vue源码解析（二）：new Vue() 初始化流程》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-02.html)
 《Vue源码解析（三）：数据响应式》
 [《Vue源码解析（四）：Vue批量异步更新策略》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-04.html)
+[《Vue源码解析（五）：虚拟dom和diff算法》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-05.html)

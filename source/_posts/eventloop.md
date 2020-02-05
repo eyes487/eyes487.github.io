@@ -266,7 +266,7 @@ fs.readFile('test.js', () => {
 代码会先进入 I/O callbacks 阶段，然后是 check 阶段，最后才是 timers 阶段。因此，setImmediate才会早于setTimeout执行。
 
 
--------------如果以上内容有不对的地方，欢迎大家指正------------
+-------------如果以上内容有不对的地方，还请大家指正------------
 
 Node中的事件循环参考 
 [《Node 定时器详解》](http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html)

@@ -146,6 +146,8 @@ export function initRender (vm: Component) {
 
   // $attrs & $listeners are exposed for easier HOC creation.
   // they need to be reactive so that HOCs using them are always updated
+  //公开$ attrs和$ listeners以便于创建HOC。
+  //它们必须是反应性的，以便始终更新使用它们的HOC
   const parentData = parentVnode && parentVnode.data
 
   /* istanbul ignore else */
@@ -292,6 +294,9 @@ export function mountComponent (
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
   // component's mounted hook), which relies on vm._watcher being already defined
+  //我们将其设置为观察者构造函数中的vm._watcher
+  //因为观察者的初始补丁可能会调用$ forceUpdate（例如，在child内部
+  //组件的挂接钩），它依赖于已定义的vm._watcher 
   new Watcher(vm, updateComponent, noop, {
     before () {
       if (vm._isMounted && !vm._isDestroyed) {
@@ -303,6 +308,8 @@ export function mountComponent (
 
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
+  //手动安装的实例，在自身上调用安装
+  //mount在其插入的钩子中被渲染创建的子组件调用
   if (vm.$vnode == null) {
     vm._isMounted = true
     callHook(vm, 'mounted')
@@ -331,6 +338,8 @@ Vue.prototype._render = function (): VNode {
 
     // set parent vnode. this allows render functions to have access
     // to the data on the placeholder node.
+    //设置父vnode。这使得渲染功能可以访问
+    //到占位符节点上的数据。 
     vm.$vnode = _parentVnode
     // render self
     let vnode
@@ -405,3 +414,4 @@ Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
 《Vue源码解析（二）：new Vue() 初始化流程》
 [《Vue源码解析（三）：数据响应式》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-03.html)
 [《Vue源码解析（四）：Vue批量异步更新策略》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-04.html)
+[《Vue源码解析（五）：虚拟dom和diff算法》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-05.html)

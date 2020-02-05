@@ -24,7 +24,7 @@ date: 2020-01-26
 
 ### 1.3 修改dev脚本
 在`package.json`中 在scripts中找到dev，添加 --sourcemap，如下
-```js
+```bash
  "scripts": {
     "dev": "rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-full-dev",
     "dev:cjs": "rollup -w -c scripts/config.js --environment TARGET:web-runtime-cjs-dev",
@@ -53,7 +53,7 @@ dist- - -发布目录，所有输出文件都在里面
 ## 3.查找入口文件
 
 ### 3.1 在`package.json`中，dev命令中
-```js
+```bash
 "dev": "rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-full-dev",
 ```
 代码里可以发现两个关键点 `scripts/config.js`和`web-full-dev`,所以去到config.js可以发现
@@ -248,9 +248,12 @@ export default Vue
 ![Vue调试步骤](http://fs.eyes487.top:9999/uploads/1580122844391-vue-tiaoshi.png "图2")
 
 Vue源码解读方法，差不多就是这样了，之后会有具体文章分析Vue的重要实现过程。
+学习源码，知道大概思路，设计思想就行了，不用太深究其细节，框架也是一个产品，里面会包含大量业务代码。
+框架中，基本都是使用英文注释，对英文不太好的朋友会不太友好，`vscode`中推荐使用`comment Translate`这个插件，可以把注释翻译成中文。
 
 目录
 《Vue源码解析（一）：如何解读源码》
 [《Vue源码解析（二）：new Vue() 初始化流程》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-02.html)
 [《Vue源码解析（三）：数据响应式》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-03.html)
 [《Vue源码解析（四）：Vue批量异步更新策略》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-04.html)
+[《Vue源码解析（五）：虚拟dom和diff算法》](https://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-05.html)
