@@ -9,6 +9,8 @@ date: 2020-01-28
 
 之前写过一篇文章[《实现MVVM原理》](https://blog.eyes487.top/2019/09/10/mvvm-principle.html),今天从源码的角度了解一下数据响应式是如何实现的。在上一篇文章 `initState` 处就是做数据响应式的，今天就从这里开始。
 
+Vue版本: 2.6.11
+
 ## 1.initState()
 src/core/instance/state.js中
 ```js
