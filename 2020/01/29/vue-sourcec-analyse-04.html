@@ -188,6 +188,7 @@
     
     <div class="post-body post-content">
         <p>Vue页面中会存在多个组件，每个组件对应着一个Watcher，当页面中多个组件发生变化的时候，最好的办法就是把组件批量的更新，然后在一次性刷新页面，这样效率极高。这样想到了用<code>微任务</code>,会在同一次事件循环(tick)中执行完，然后在刷新页面。要了解这个知识点，首先需要了解一下<code>事件循环</code>，如果不了解可以先看看这篇文章<a href="https://blog.eyes487.top/2020/01/26/eventloop.html">《理解浏览器和Node中的事件循环(EventLoop)》</a></p>
+<p>Vue版本: 2.6.11</p>
 <h2 id="1-实例"><a href="#1-实例" class="headerlink" title="1.实例"></a>1.实例</h2><p>先看一个实例</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"num"</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 

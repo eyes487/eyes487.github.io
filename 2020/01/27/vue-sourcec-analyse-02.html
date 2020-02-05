@@ -24,7 +24,7 @@
 
 
 <meta name="description" content="上一篇文章已经说到如何来解读框架源码，这篇文章就通过走一遍new Vue()创建一个实例所要经过的过程来解读其中的代码所发挥的作用。下面不重要的一些代码都会通过//...省略掉
-1.new Vu...">
+Vue版本: 2...">
 
 
 <meta name="robots" content="all">
@@ -189,6 +189,7 @@
     
     <div class="post-body post-content">
         <p>上一篇文章已经说到如何来解读框架源码，这篇文章就通过走一遍new Vue()创建一个实例所要经过的过程来解读其中的代码所发挥的作用。<br>下面不重要的一些代码都会通过<code>//...</code>省略掉</p>
+<p>Vue版本: 2.6.11</p>
 <h2 id="1-new-Vue"><a href="#1-new-Vue" class="headerlink" title="1.new Vue()"></a>1.new Vue()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">     el: <span class="string">'#demo'</span>,</span><br><span class="line">     data:&#123;</span><br><span class="line">       msg:<span class="string">'hello world'</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
 
 <p>通过断点，我们会进入<code>instance/index.js</code>中</p>

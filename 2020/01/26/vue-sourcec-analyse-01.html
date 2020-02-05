@@ -188,6 +188,7 @@
     
     <div class="post-body post-content">
         <p>以前听人说解读一个框架的源码，最好的方法就是自己写一个小实例，通过浏览器断点（f10，应该大家都知道的）看运行这个实例执行了哪些步骤，想知道某个方法是如何实现的，就执行某个方法，通过断点查看它到底做了些什么。这个方法是很有用的，今天就通过此方法向大家介绍解读源码的步骤。</p>
+<p>Vue版本: 2.6.11</p>
 <h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><h3 id="1-1-克隆源码"><a href="#1-1-克隆源码" class="headerlink" title="1.1 克隆源码"></a>1.1 克隆源码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">地址： https://github.com/vuejs/vue</span><br><span class="line">通过命令： git <span class="built_in">clone</span> https://github.com/vuejs/vue.git</span><br><span class="line">当前版本： 2.6.10</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-2-安装依赖"><a href="#1-2-安装依赖" class="headerlink" title="1.2 安装依赖"></a>1.2 安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">安装依赖： <span class="built_in">cd</span> vue &amp;&amp; npm install </span><br><span class="line">打包工具rollup： npm install rollup -g  (如果以前没有安装)</span><br></pre></td></tr></table></figure>
