@@ -592,6 +592,7 @@ var S = {
     }
   }());
   
-  
-  S.init();
+  if(document.querySelector('.canvas')){
+    S.init();
+  }
   
