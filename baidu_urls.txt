@@ -4,6 +4,7 @@ http://blog.eyes487.top/2020/01/28/vue-sourcec-analyse-03.html
 http://blog.eyes487.top/2020/01/27/vue-sourcec-analyse-02.html
 http://blog.eyes487.top/2020/01/26/vue-sourcec-analyse-01.html
 http://blog.eyes487.top/2019/12/07/one-time-optimization.html
+http://blog.eyes487.top/2019/11/16/a-picture-bed.html
 http://blog.eyes487.top/2019/10/21/problem-of-react-native.html
 http://blog.eyes487.top/2019/10/20/eventloop.html
 http://blog.eyes487.top/2019/10/13/dom-diff-algorithnm.html
