@@ -95,7 +95,7 @@ function uploadFile() {
 
 服务端代码，使用`node + express`，可以快速的搭建服务端代码
 ```bash
-npm install express -D
+npm install express -S
 ```
 然后新建`server.js`,
 ```js
@@ -111,7 +111,7 @@ var server = app.listen(9999, function() {
 
 `Multer` 是一个 node.js 中间件，用于处理 `multipart/form-data` 类型的表单数据，它主要用于上传文件。安装 `multer`
 ```bash 
-npm install multer -D
+npm install multer -S
 ```
 在`server.js`中加入
 ```js
@@ -146,7 +146,7 @@ upload.array('imgfile', 10), 表示接收一个以`imgfile`命名的数组，长
 
 这里数据库使用 `mysql`
 ```bash
-npm install mysql -D
+npm install mysql -S
 ```
 连接数据库，封装一个连接数据库的文件
 ```js
@@ -255,7 +255,7 @@ function getImageFiles(path,data) {
 
 用到了`fs 和 image`两个插件
 ```bash 
-npm install fs image -D
+npm install fs image -S
 ```
 
 `fs`是读取存在服务器上的图片文件，`image`可以获取图片的具体信息,我们会返回图片的宽和高。之后做瀑布流渲染，需要拿到图片的宽和高。
