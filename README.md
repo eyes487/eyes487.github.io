@@ -1,8 +1,10 @@
 # eyes487.github.io
-Blog based on Hexo and Git
-基于hexo和git的博客
+Blog based on Hexo + Git + travis-ci
+基于 hexo + git + travis-ci 的博客
 
 [访问地址](http://blog.eyes487.top)
+
+[redux简单实现](https://blog.eyes487.top/2020/02/26/achieve-redux.html)
 
 [Vue源码解析（五）：虚拟dom和diff算法](https://blog.eyes487.top/2020/01/30/vue-sourcec-analyse-05.html)
 
