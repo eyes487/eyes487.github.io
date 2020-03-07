@@ -37,7 +37,7 @@ Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux �
 
 <title>
     
-    redux简单实现 |
+    redux 简单实现 |
     
     eyes487的博客
 </title>
@@ -148,9 +148,9 @@ Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux �
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="redux简单实现">
+        <h1 id="redux 简单实现">
             
-            redux简单实现
+            redux 简单实现
             
         </h1>
         <div class="post-meta">
@@ -193,13 +193,15 @@ Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux �
         <blockquote>
 <p>Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux 除了和 React 一起用外，还支持其它界面库。 它体小精悍（只有2kB，包括依赖）。</p>
 </blockquote>
-<h2 id="1-redux用法"><a href="#1-redux用法" class="headerlink" title="1. redux用法"></a>1. redux用法</h2><p>三大原则</p>
+<h2 id="1-redux用法"><a href="#1-redux用法" class="headerlink" title="1. redux用法"></a>1. redux用法</h2><p><strong>三大原则</strong></p>
 <ul>
 <li>单一数据源: 整个应用的 <code>state</code> 只存在于<code>唯一一个 store</code> 中</li>
 <li>State 是只读的: 唯一改变 state 的方法就是<code>触发 action</code>，action 是一个用于描述已发生事件的普通对象。</li>
 <li>使用纯函数来执行修改: 描述 action 如何改变 state tree,都编写在<code>reducer</code>中</li>
 </ul>
-<p>下面回顾一下redux的用法:<br>定义reducer函数</p>
+<p><img src="http://fs.eyes487.top:9999/uploads/1583576247206-redux.jpg" alt="redux工作流" title="图1"></p>
+<p>上面是redux工作流的图解。<br><code>store</code>中存放数据，数据发生变化，通知页面更新。页面上<code>想要修改数据</code>，就会派发一些指令，通过<code>dispatch</code>发送<code>action</code> 给 <code>store</code>，<code>store</code>就会去查阅<code>Reducers</code>，在<code>Reducers</code>中定义了修改数据的方式，接收<code>之前的state</code>和<code>action</code>,返回<code>新的state</code>。</p>
+<p><strong>下面回顾一下redux的用法:</strong><br>定义reducer函数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> initState = &#123;<span class="attr">a</span>: <span class="number">1</span>,<span class="attr">b</span>: <span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counterReducer</span>(<span class="params">state = initState,action</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;type,payload&#125;</span><br><span class="line">    <span class="keyword">switch</span>(type)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"ADD"</span>:</span><br><span class="line">            <span class="keyword">let</span> a = state.a + payload;</span><br><span class="line">            <span class="keyword">return</span> &#123;...state,a&#125;;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"MINUS"</span>:</span><br><span class="line">            <span class="keyword">let</span> b = state.b - payload;</span><br><span class="line">            <span class="keyword">return</span> &#123;...state,b&#125;;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//通过createStore创建唯一数据源</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(numReducer);</span><br></pre></td></tr></table></figure>
 
 <p>在页面上通过dispatch,发送action更改数据</p>
@@ -272,6 +274,12 @@ Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux �
     </div>
 </article>
 <div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/03/07/achieve-react-redux.html" class="pre-post btn btn-default" title='react-redux 简单实现'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            react-redux 简单实现</span>
+    </a>
     
     
     <a href="/2020/01/30/vue-sourcec-analyse-05.html" class="next-post btn btn-default" title='Vue源码解析（五）：虚拟dom和diff算法'>
