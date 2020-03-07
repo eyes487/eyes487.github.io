@@ -4,7 +4,7 @@ Blog based on Hexo + Git + travis-ci
 
 [访问地址](http://blog.eyes487.top)
 
-[redux简单实现](https://blog.eyes487.top/2020/03/07/achieve-react-redux.html)
+[react-redux简单实现](https://blog.eyes487.top/2020/03/07/achieve-react-redux.html)
 
 [redux简单实现](https://blog.eyes487.top/2020/02/26/achieve-redux.html)
 
