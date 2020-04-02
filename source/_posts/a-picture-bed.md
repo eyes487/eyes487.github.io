@@ -10,9 +10,9 @@ date: 2019-11-16
 
 查看完整代码请戳[这里](https://github.com/eyes487/image-upload),下面会对关键性代码做一些讲解。
 
-## 1.上传图片
+# 1.上传图片
 
-### 1.1 html代码
+## 1.1 html代码
 ```html
 <input type="file" multiple id="file">
 <input type="button" value="上传" id="upload">
@@ -20,7 +20,7 @@ date: 2019-11-16
 页面是这个样子，当然可以自己加一些css样式
 ![文件上传](http://fs.eyes487.top:9999/uploads/1581848469566-file.png "图1")
 
-### 1.2 js代码
+## 1.2 js代码
 ```js
 var fileinput = document.getElementById('file')
 
@@ -91,7 +91,7 @@ function uploadFile() {
 
 ```
 
-### 1.3 服务端代码
+## 1.3 服务端代码
 
 服务端代码，使用`node + express`，可以快速的搭建服务端代码
 ```bash
@@ -205,11 +205,11 @@ function upload(req, resp, next) {
 ```
 upload中插入上传的文件名到`img_list`表中，上传多张图片就插入多条数据。上传图片就算完成了。
 
-## 2.渲染页面
+# 2.渲染页面
 
 使用瀑布流显示页面上的图片，做瀑布流的方法有多种，这里我使用了`绝对定位`的方法来实现，然后下拉刷新，根据滚动条的高度来实现懒加载。
 
-### 2.1 瀑布流
+## 2.1 瀑布流
 
 查询图片列表，服务端代码
 ```js
@@ -379,7 +379,9 @@ window.onresize = function{
 这样，瀑布流展示就做完了。查看效果点击[这里](http://fs.eyes487.top:9999/)
 
 
-### 2.2 懒加载
+## 2.2 懒加载
+
+### 2.2.1 分页查询
 
 懒加载就是页面开不到的地方先不加载，等页面滑到的地方在去请求数据
 
@@ -400,9 +402,51 @@ window.onscroll = function (){
 }
 ```
 当 滚动条高度 加上 文档可视区的高度 要大于 `arrH`中最小的高度，也就是页面上图片最小高度总和的时候，就需要加载新的数据了。
-同时还需要通过 `canLoad`变量判断，防止多次加载，或者后面已经没有数据的时候，这个变量就会变为不可加载。懒加载基本就是这样了。
+同时还需要通过 `canLoad`变量判断，防止多次加载，或者后面已经没有数据的时候，这个变量就会变为不可加载。
 
 
-*
+### 2.2.2 IntersectionObserver 可视区域加载
+
+上面通过请求接口的方式实现的懒加载,也可以通过图片按需加载实现.
+
+`IntersectionObserver` ,可以用来监听元素是否加入设备的可视区域之内,我们可以通过监听dom是否进入可视区域,再去加载图片。(ie现在还不支持)
+
+在上面`renderImage` 函数中，渲染图片的时候，先不指定`src`地址，指定一个`data-src`属性,渲染图片dom之后，要监听`initObserver();`函数，下面会说到它的实现方法
+```js
+function renderImage(list) {
+    // ...
+        Div.innerHTML = `
+            <input type="checkbox" class="delete-checkbox" onClick="selectDeleteImg(this,'${list[i].id}','${list[i].imgSrc}')">
+            <img class="img" data-src="./uploads/${list[i].imgSrc}"/>
+            <p class="desc">${list[i].imgSrc}</p>
+        `;
+    //...
+    initObserver();
+}
+```
+
+```js
+const observer = new IntersectionObserver(function(changes) {
+    changes.forEach(function(element, index) {
+     // 当这个值大于0，说明满足我们的加载条件了，这个值可通过rootMargin手动设置
+      if (element.intersectionRatio > 0) {
+        // 放弃监听，防止性能浪费，并加载图片。
+        observer.unobserve(element.target);
+        element.target.src = element.target.dataset.src;
+      }
+    });
+});
+
+function initObserver() {
+  const listItems = document.querySelectorAll('.img');
+  listItems.forEach(function(item) {
+   // 对每个list元素进行监听
+    observer.observe(item);
+  });
+}
+```
+这样就实现了 图片的可视区域加载，在控制台`network`中, 可以查看到，页面滚动到某个位置，某个位置的图片才去进行加载。
+
+
 
 还有一些其他的功能，比如`查看大图`，`删除图片`等，这里就不细说了，如果感兴趣的可以去[查看完整代码](https://github.com/eyes487/image-upload)
