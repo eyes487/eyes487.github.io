@@ -170,3 +170,9 @@ if (!__DEV__) {
 <item name="android:editTextBackground">@android:color/transparent</item>
 ```
 [参考地址](https://github.com/facebook/react-native/issues/17530)
+
+
+## 9. Date 问题
+
+在debug模式下，没有问题
+如果不开启debugger-ui， Date.parse就获取不到数据，暂不知道原因，用的moment来处理时间
