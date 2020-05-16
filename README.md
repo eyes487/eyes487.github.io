@@ -4,6 +4,8 @@ Blog based on Hexo + Git + travis-ci
 
 [访问地址](http://blog.eyes487.top)
 
+webpack深入学习（一）：基础配置篇](https://blog.eyes487.top/2020/05/16/webpack-first.html)
+
 [react-redux简单实现](https://blog.eyes487.top/2020/03/07/achieve-react-redux.html)
 
 [redux简单实现](https://blog.eyes487.top/2020/02/26/achieve-redux.html)
