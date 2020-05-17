@@ -34,13 +34,14 @@ module.exports = {
      },
     plugins: [new HtmlWebpackPlugin()] //插件配置
 }
-````
+```
 ## 二、安装webpack
 
 ### 2.1 环境准备
 
 node环境
-推荐安装最近版本，node版本越高，webpack运行速度越快
+
+推荐安装最近版本，**node版本越高，webpack运行速度越快**
 
 ### 2.2 不推荐全局安装
 
@@ -85,7 +86,7 @@ mkdir webpack-practice && cd webpack-practice && npm init -y
 //安装webpack
 npm install webpack webpack-cli -D  //也可以使用yarn
 ```
-我们可以通过`npx webpack -v`检测版本，npx是npm自带的，不用安装，这个命令会帮我们生成一个软连接，指向node_modules中的webpack，之后我们执行打包命令的时候，也会使用这个。
+我们可以通过`npx webpack -v`检测版本，npx是npm自带的，不用安装，这个命令会帮我们生成一个`软连接`，指向`node_modules`中的`webpack`，之后我们执行打包命令的时候，也会使用这个。
 
 ### 3.1 简单实例
 
@@ -121,7 +122,7 @@ module.exports={
 }
 ````
 
-这就是webpack的默认配置了，webpack4⽀持零配置使⽤,但是很弱，稍微复杂些的场景都需要额外扩展，下面就来看看更多的配置吧
+这就是webpack的默认配置了，webpack4⽀持`零配置`使⽤,但是很弱，稍微复杂些的场景都需要额外扩展，下面就来看看更多的配置吧
 
 ## 四、配置项
 
@@ -138,8 +139,11 @@ module.exports={
 这是一个不常用的配置，项目打包的相对路径
 
 ### 4.3 entry 入口 / output 出口
+
 三种类型：字符串、数组、对象
+
 字符串已经说过了，就是上面那种格式，下面看看数组
+
 新创建一个文件`src/other.js`
 ```js
 module.exports={
@@ -151,17 +155,17 @@ module.exports={
     }
     //...
 }
-````
+```
 打包完之后的信息
 ![webpack](http://fs.eyes487.top:9999/uploads/1589614309075-webpack3.png "图4")
 依然只输出了一个文件，但是这个文件里包括了两个模块的代码，所以数组形式，是把多个mode打包到一个文件里面
 
-多入口打包，对象形式，一旦有多入口的话，就会有多出口，所以这里不能指定名称，可以用到`占位符`,无论是一个出口还是多出口，都推荐使用占位符
+多入口打包，对象形式，一旦有`多入口`的话，就会有`多出口`，所以这里不能指定名称，可以用到`占位符`,无论是一个出口还是多出口，都推荐使用占位符
 
 占位符包括（常用）：
 * name： 入口对应的名称
-* hash： 整个项目的hash，每次打包都会创建一个新的，不利于缓存，每次构建的唯一标识，可以指定长度，[hash:6]
-* chunkHash： 根据不同入口entry进行依赖解析，构建对应的chunk，生成相应的hash，只要组成entry的模块没有内容改动，则对应的hash不变
+* hash： 整个项目的hash，**每次打包都会创建一个新的**，不利于缓存，每次构建的唯一标识，可以指定长度，[hash:6]
+* chunkHash： 根据不同入口entry进行依赖解析，构建对应的chunk，生成相应的hash，**只要组成entry的模块没有内容改动，则对应的hash不变**
 ```js
 module.exports={
     //入口
@@ -175,7 +179,7 @@ module.exports={
     }
     //...
 }
-````
+```
 下面是打包结果输出
 ![webpack](http://fs.eyes487.top:9999/uploads/1589618061566-webpack4.png "图5")
 左边和右边对比，右边是修改了`other.js`之后的打包信息，可以看出，只有other.js文件的hash发生了改变，这样有利于浏览器缓存
@@ -185,7 +189,7 @@ module.exports={
 
 ### 4.4 module
 
-Webpack 默认只⽀持.json 和 .js模块，不⽀持 不认识其他格式的模块，那么其他格式的模块处理，和处理⽅式就需要loader了
+Webpack 默认只⽀持`.json` 和 `.js`模块，不⽀持 不认识其他格式的模块，那么其他格式的模块处理，和处理⽅式就需要loader了
 
 想了解更多，可以去 [官网](https://webpack.docschina.org/loaders/restyle-loader/#src/components/Sidebar/Sidebar.jsx) 查看,常见的loader有:
 ```bash
@@ -243,7 +247,7 @@ module.exports={
     //...
 }
 
-````
+```
 我们先说一下loader的工作流程：当webpack执行构建的时候，发现了它不认识的模块，然后它就会来module中查找，在`rules`中，通过`后缀名`的形式，配置了处理哪一类文件需要用到什么loader，loader的执行顺序是 `从后往前`,经过处理之后，webpack的构建过程就能顺利地执行下去了
 
 执行打包命令，输出打包文件，我们可以先建一个index.html文件，引入刚才的打包成功的文件，就可以看到css效果了，（下面会讲到通过plugin自动引入打包文件,这里先自己创建一个)
@@ -276,7 +280,7 @@ module.exports={
     }
     //...
 }
-````
+```
 sass跟less处理方式差不多，这里就不说了
 
 ##### **开启css-module**
@@ -306,7 +310,7 @@ module.exports={
     }
     //...
 }
-````
+```
 下面是使用方式：
 ![webpack](http://fs.eyes487.top:9999/uploads/1589628351472-webpack6.png "图7")
 
@@ -351,7 +355,7 @@ module.exports = {
         overrideBrowserslist: ["last 2 versions", ">1%"]
     })]
 }
-````
+```
 效果图
 ![webpack](http://fs.eyes487.top:9999/uploads/1589630109170-webpack7.png "图8")
 
@@ -379,7 +383,7 @@ module.exports={
     ]
     //...
 }
-````
+```
 这样，它重新打包的时候，就会帮我们清理掉上次打包的文件了。
 
 #### **html-webpack-plugin**
