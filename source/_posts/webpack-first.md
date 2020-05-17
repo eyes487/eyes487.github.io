@@ -8,7 +8,7 @@ date: 2020-05-16
 平时工作追求效率，一般都会使用脚手架，快速搭建项目，里面webpack都是帮我们配置好了的，导致我很少一段时间都是对webpack一知半解的。最近一段时间就深入了解了一下webpack，所以顺便把它记录下来，可能对其他人也会有点帮助，也方便自己之后回顾。
 
 
-## 一、什么是webpack
+# 一、什么是webpack
 
 > 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包工具。当 webpack 处理应用程序时，它会在内部构建一个 依赖图(dependency graph)，此依赖图会映射项目所需的每个模块，并生成一个或多个 bundle。
 
@@ -35,20 +35,20 @@ module.exports = {
     plugins: [new HtmlWebpackPlugin()] //插件配置
 }
 ```
-## 二、安装webpack
+# 二、安装webpack
 
-### 2.1 环境准备
+**环境准备**
 
 node环境
 
 推荐安装最近版本，**node版本越高，webpack运行速度越快**
 
-### 2.2 不推荐全局安装
+**不推荐全局安装**
 
 因为这会将项目找那个的webpack锁定到某个版本，造成不同的项目因为webpack依赖不同而导致冲突，构建失败。
 相信大家平时应该都不会去升级全局的版本
 
-### 2.3 项目安装 推荐
+**项目安装 推荐**
 
 ```bash
 # 安装最新的稳定版本
@@ -64,7 +64,7 @@ npm i -D webpack@beta
 npm i -D webpack-cli
 ```
 
-### 2.4 检查安装
+**检查安装**
 ```bash
 webpack -v //command not found 默认在全局环境中查找
 
@@ -74,7 +74,7 @@ webpack
 ./node_modules/.bin/webpack -v //到当前的node_modules模块⾥指定webpack
 ```
 
-## 三、项目初始化
+# 三、项目初始化
 
 下面，我们就通过项目来一步一步熟悉webpack的配置了
 
@@ -88,7 +88,7 @@ npm install webpack webpack-cli -D  //也可以使用yarn
 ```
 我们可以通过`npx webpack -v`检测版本，npx是npm自带的，不用安装，这个命令会帮我们生成一个`软连接`，指向`node_modules`中的`webpack`，之后我们执行打包命令的时候，也会使用这个。
 
-### 3.1 简单实例
+## 3.1 简单实例
 
 创建一个`src/index.js`
 
@@ -104,7 +104,7 @@ console.log('hello world!!!!!!!!')
 
 这是因为，执行构建的时候，webpack会首先去找`webpack.config.js`,如果没有找到呢，它就会使用自己的默认配置信息。那默认配置信息长什么样呢，下面就来看一看
 
-### 3.2 默认配置
+## 3.2 默认配置
 创建一个 `webpack.config.js`
 
 ```js
@@ -124,9 +124,9 @@ module.exports={
 
 这就是webpack的默认配置了，webpack4⽀持`零配置`使⽤,但是很弱，稍微复杂些的场景都需要额外扩展，下面就来看看更多的配置吧
 
-## 四、配置项
+# 四、配置项
 
-### 4.1 mode
+## 4.1 mode
 
 大家是否有看到，上面打包输出，那张图上有一个`warining`,给出了一个警告
 大致意思是，必须设置一个`mode`，构建模式，没有设置，就会默认指定生产模式，所以代码会是压缩的
@@ -135,10 +135,10 @@ module.exports={
 
 这个值，你可以设置在config.js中，或者在打包的时候写入命令中`npx webpack --mode=production`
 
-### 4.2 context 上下文
+## 4.2 context 上下文
 这是一个不常用的配置，项目打包的相对路径
 
-### 4.3 entry 入口 / output 出口
+## 4.3 entry 入口 / output 出口
 
 三种类型：字符串、数组、对象
 
@@ -187,7 +187,7 @@ module.exports={
 
 这里，就借机提一下，`bundle`和`chunk`,这里是一个bundle对应一个chunk，bundle就是打包出来的文件，而chunk是代码块，它可以由多个模块组成，这是 webpack 特定的术语被用在内部来管理 building 过程。官网解释，请戳 [这里](https://webpack.docschina.org/glossary)
 
-### 4.4 module
+## 4.4 module
 
 Webpack 默认只⽀持`.json` 和 `.js`模块，不⽀持 不认识其他格式的模块，那么其他格式的模块处理，和处理⽅式就需要loader了
 
@@ -207,9 +207,9 @@ eslint-loader
 
 这些loader，基本都可以见名知义，看名字就知道是处理什么类型文件的。
 
-#### 4.4.1 处理样式
+### 4.4.1 处理样式
 
-##### **style-loader css-loader**
+#### **style-loader css-loader**
 
 首先安装依赖
 ```bash
@@ -255,7 +255,7 @@ module.exports={
 ![webpack](http://fs.eyes487.top:9999/uploads/1589622038016-webpack5.png "图6")
 从图上可以看到，css通过style标签引入html中了
 
-##### **less-loader**
+#### **less-loader**
 
 上面说了css文件，但是我们项目开发一般都会选择，less或者sass，这又该怎么处理呢
 
@@ -283,7 +283,7 @@ module.exports={
 ```
 sass跟less处理方式差不多，这里就不说了
 
-##### **开启css-module**
+**开启css-module**
 我们在项目中使用css，一般都是通过css模块化的方式来使用的，也就是通过对象的形式来引入css
 ```js
 //webpack.config.js
@@ -314,7 +314,7 @@ module.exports={
 下面是使用方式：
 ![webpack](http://fs.eyes487.top:9999/uploads/1589628351472-webpack6.png "图7")
 
-##### **postcss-loader**
+#### **postcss-loader**
 
 它可以帮我们增加一些浏览器前缀，比如一些css的属性，在使用时都需要加上浏览器加上，而postcss-loader就是帮我们做这件事的
 
@@ -343,7 +343,7 @@ module:{
         ]
     }
 ```
-它要在css-loader之前使用，还需要创建一个`postcss.config.js`
+它要在`css-loader`之前使用，同时还需要创建一个`postcss.config.js`
 ```js
 const autoprefixer = require('autoprefixer')
 module.exports = {
@@ -359,11 +359,102 @@ module.exports = {
 效果图
 ![webpack](http://fs.eyes487.top:9999/uploads/1589630109170-webpack7.png "图8")
 
-### 4.5 plugins 
+### 4.4.2 处理图片和文字
+
+#### **file-loader**
+
+安装依赖
+```bash
+npm install file-loader -D
+```
+```js
+module:{
+        rules:[
+        //...
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                //less-loaser: 会把less转换为css文件
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[name]-[hash:6].[ext]",
+                        outputPath: "images/"
+                    }
+                },
+            }
+        ]
+    }
+```
+首先在test中配置图片后缀名，打包的图片文件同样也支持占位符，还有`ext`表示后缀名， `output`是打包图片输出的目录，统一放在images下
+
+同时，这个loader还可以用来处理文字，比如我们经常都会使用到的`字体图标`,在阿里图标中下载几个图标，把`woff2`文件放入`assets`文件下，可以自己随意放在哪里
+```js
+//webpack.cofig.js
+{
+    test: /\.(eot|ttf|woff|woff2|svg)$/,
+    use: {
+        loader:"file-loader",
+        options: {
+            name: "[name]-[hash:6].[ext]",
+        }
+    },
+    
+}
+```
+```css
+//css
+@font-face {
+    font-family: "iconfont";
+    font-display: swap;
+    src: url("assets/iconfont.woff2") format("woff2")
+}
+.iconfont {
+      font-family: "iconfont" !important;
+      font-size: 30px;
+      font-style: normal;
+}
+```
+在页面中引用
+```js
+//index.js
+import styles from './index.less'
+
+let ele = `<div class="${styles.iconfont}">&#xe64d;</div>
+<div class="${styles.iconfont}">&#xe652;</div>
+<div class="${styles.iconfont}">&#xe64e;</div>`
+
+document.write(ele)
+```
+效果展示：
+![webpack](http://fs.eyes487.top:9999/uploads/1589709745312-webpack8.png "图9")
+
+#### **url-loader**
+
+这是file-loader的`加强版`，它包含了file-loader的全部功能,推荐使用`url-laoder`,这是因为它会支持`limit`
+
+```js
+//webpack.cofig.js
+{
+    test: /\.(png|jpe?g|gif)$/,
+    use: {
+        loader:"url-loader",
+        options: {
+            name: "[name]-[hash:6].[ext]",
+            outputPath: "images/",
+            limit: 1024,  //单位是字节 1024=1kb
+        }
+    },
+    
+}
+```
+上面`limit`的意思是，当图片小于`1kb`的时候，会把图片转为`base64`格式,直接插入代码中，这样就可以减少一些请求，大于1kb就会打包成图片放在images文件夹下。这个具体大小，就看大家怎么衡量了，自己可以设置。一般都推荐小体积的图片资源就转为base64格式
+
+
+## 4.5 plugins 
 
 插件，它是webpack的一个补充，可以运行在webpack的整个打包过程，每个plugin，都是针对webpack的一个生命周期，做操作的
 
-#### **clean-webpack-plugin**
+### **clean-webpack-plugin**
 
 我们上面打包了很多次，然后在dist目录下，生成了很多冗余文件，所以我们需要一个插件来帮我清理掉这些文件
 
@@ -386,27 +477,83 @@ module.exports={
 ```
 这样，它重新打包的时候，就会帮我们清理掉上次打包的文件了。
 
-#### **html-webpack-plugin**
+### **html-webpack-plugin**
 
-上面也说到了，我们需要一个plugin来帮我们自动引用打包文件，不用每次自己在html中引用打包的js了。
+上面也说到了，我们需要一个plugin来帮我们自动引用打包文件，不用每次自己创建html，在引用打包的js了。
 
-首先创建一个`public/index.html`
+首先创建一个`src/index.html`
 
 安装依赖
 ```bash
 npm install html-webpack-plugin -D
 ```
 ```js
+const HtmlWebpackPlugin = require('html-Webpack-Plugin')
+// ...
 plugins:[
         new HtmlWebpackPlugin({
-            template: './public/index.html',
+            template: './src/index.html',
             filename: 'index.html'
         })
     ]
 ```
 这样在打包的时候，就可以把`index.html`也打包进`dist`目录，并且引用打包的js文件了
+它还有很多其他的配置项，这里就不一一列举了，感兴趣的可以自己试一下，戳[这里](https://github.com/jantimon/html-webpack-plugin)
+
+### **webpack-dev-server**
+还有一个问题，我们不能每次修改了一个文件就重新打包一次吧，如何让每次修改文件都自动刷新呢，也就是平时所说的热更新，那就需要用到`webpack-dev-server`了
+
+```bash
+npm install webpack-dev-server -D
+```
+然后在package.json中设置
+```js
+"scripts": {
+    //...
+    "dev": "webpack-dev-server"
+  },
+```
+启动项目
+```bash
+npm run dev
+```
+看到下面这个提示，就说明已经启动成功了，在`http://localhost:8080/`
+![webpack](http://fs.eyes487.top:9999/uploads/1589713844017-webpack9.png "图10")
+这样之后修改页面，它就会自动帮我们刷新了。这时，会发现，dist目录下被清空了，因为现在都是通过内存来读取文件，这样反应速度会更快了。还可以在`devserver`中做一些配置项
+```js
+//webpack.config.js
+module.exports={
+    //...
+    devserver:{
+        contentBase: path.resolve(__dirname,"./dist")，//把这里当成静态目录了
+        open: true, //是都自动打开浏览器窗口
+        port: 8080,
+        //...
+    }
+}
+```
+
+## 4.6 sourcemap
+
+源代码与打包后的代码的映射关系，通过sourceMap定位到源代码。
+在开发模式下，是默认开启sourcemap的，所以我们平时开发的时候，出现了错误，都会直接定位到源文件。那生产模式又是怎么配置的呢？
+```js
+//webpack.config.js
+module.exports = {
+    //...
+    devtool: 'source-map'， //cheap-eval-source-map  ...
+}
+```
+开启这个选项之后，它会生成一个对应的 `.map`文件，里面表示打包文件和源代码的关系映射。
+
+它还有很多可以其他可以选择的模式，每个模式的构建速度和结果不同，信息越详细，构建速度越慢，所以需要权衡这两个方面。
+如果想了解更多选项，请戳[这里](https://www.webpackjs.com/configuration/devtool/)
+
+生产环境是不建议开启sourcemap的，但是有一些特殊场景，比如要做错误解析，需要开启sourcemap的话，也不要把map文件上传到公网上，这样比较安全。
 
 
-这些配置，都是一些平时用到的基础配置，下一篇会拓展一些项目中用到的其他配置
+
+
+上面做了一个webpack的最基本配置，算是对webpack的一些基本了解。下一篇会拓展一些项目中用到的其他配置
 
 -------------如果以上内容有不对的地方，还请大家指正------------
