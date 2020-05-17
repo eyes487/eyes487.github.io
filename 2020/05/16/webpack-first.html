@@ -326,6 +326,7 @@
 <p>看到下面这个提示，就说明已经启动成功了，在<code>http://localhost:8080/</code><br><img src="http://fs.eyes487.top:9999/uploads/1589713844017-webpack9.png" alt="webpack" title="图10"><br>这样之后修改页面，它就会自动帮我们刷新了。这时，会发现，dist目录下被清空了，因为现在都是通过内存来读取文件，这样反应速度会更快了。还可以在<code>devserver</code>中做一些配置项</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    devserver:&#123;</span><br><span class="line">        contentBase: path.resolve(__dirname,<span class="string">"./dist"</span>)，<span class="comment">//把这里当成静态目录了</span></span><br><span class="line">        open: <span class="literal">true</span>, <span class="comment">//是都自动打开浏览器窗口</span></span><br><span class="line">        port: <span class="number">8080</span>,</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>下一篇文章中，我们会讲到webpack更多的配置项，这里已经满足了基本配置了。</p>
 <h2 id="4-6-sourcemap"><a href="#4-6-sourcemap" class="headerlink" title="4.6 sourcemap"></a>4.6 sourcemap</h2><p>源代码与打包后的代码的映射关系，通过sourceMap定位到源代码。<br>在开发模式下，是默认开启sourcemap的，所以我们平时开发的时候，出现了错误，都会直接定位到源文件。那生产模式又是怎么配置的呢？</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    devtool: <span class="string">'source-map'</span>， <span class="comment">//cheap-eval-source-map  ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -351,6 +352,12 @@
     </div>
 </article>
 <div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/05/17/webpack-two.html" class="pre-post btn btn-default" title='webpack深入学习（二）：进阶篇'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            webpack深入学习（二）：进阶篇</span>
+    </a>
     
     
     <a href="/2020/03/07/achieve-react-redux.html" class="next-post btn btn-default" title='react-redux 简单实现'>

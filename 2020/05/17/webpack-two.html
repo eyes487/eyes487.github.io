@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="eyes487的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <meta name="google-site-verification" content="kh2qynWK0TEziuoSJmSB1lNTaVoVXykqpgCSyD1FtWA">
+    <link rel="dns-prefetch" href="http://blog.eyes487.top">
+    <!--SEO-->
+
+<meta name="keywords" content="js,webpack">
+
+
+<meta name="description" content="上一篇文章，讲了一些webpack的基础配置，算是对webpack的入门。今天会拓展一些真实项目中可能会用到的配置。
+一、webpack-dev-server如果不知道如何安装使用的，请先看《w...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    webpack深入学习（二）：进阶篇 |
+    
+    eyes487的博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="eyes487的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/./favicon.ico">
+
+    
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1278192097 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1278192097%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278192097'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278192097%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</div>
+
+
+
+
+    
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='xm'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://blog.eyes487.top">
+                        eyes487的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa fa-html5"></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-clock-o"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="webpack深入学习（二）：进阶篇">
+            
+            webpack深入学习（二）：进阶篇
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/js/">js</a> <a class="tag-link" href="/tags/webpack/">webpack</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/05/17</span>
+    </span>
+    
+    <!-- <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span> -->
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>上一篇文章，讲了一些webpack的基础配置，算是对webpack的入门。今天会拓展一些真实项目中可能会用到的配置。</p>
+<h1 id="一、webpack-dev-server"><a href="#一、webpack-dev-server" class="headerlink" title="一、webpack-dev-server"></a>一、webpack-dev-server</h1><p>如果不知道如何安装使用的，请先看<a href="https://blog.eyes487.top/2020/05/16/webpack-first.html">《webpack深入学习（一）：基础配置篇》</a></p>
+<h2 id="1-1-解决跨域"><a href="#1-1-解决跨域" class="headerlink" title="1.1 解决跨域"></a>1.1 解决跨域</h2><p>这是我们项目中经常互遇到的一个问题，以前经常都会用到<code>jsonp</code>,<code>cors</code>来跨域，但是现在，<code>webpack-dev-server</code>为我们提供了非常简单的方法，就可以支持跨域了。上一篇文章中，我们提到了<code>webpack-dev-server</code>来帮我们启动一个热更新服务器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: path.resolve(__dirname,<span class="string">"./dist"</span>)，<span class="comment">//把这里当成静态目录了</span></span><br><span class="line">    open: <span class="literal">true</span>, <span class="comment">//是都自动打开浏览器窗口</span></span><br><span class="line">    port: <span class="number">8080</span>,</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: <span class="string">'http://localhost:3000'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的配置，我们就可以跨域请求数据了。<code>http://localhost:3000</code>是服务器的地址，这相当于一个反向代理，就是代理了服务端的地址，这样我们在浏览器中，是不知道我们向哪个服务器发送的请求，只能看到本机的地址。</p>
+<h2 id="1-2-本地mock数据"><a href="#1-2-本地mock数据" class="headerlink" title="1.2 本地mock数据"></a>1.2 本地mock数据</h2><p>现在项目开发，基本都是前后端分离的，我们写完静态页面之后，可能后端接口还没有写完，我们不能一直就等着后端的接口呀。所以开发之前会给出一个接⼝⽂档，和接⼝联调⽇期的，我们前端就可以本地mock数据，不打断⾃⼰的开发节奏。</p>
+<p><code>dev-server</code>给我们提供了两个钩子，分别叫<code>before</code>和<code>after</code>,表示加载<code>dev-server</code>之前和之后要做的事情</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    before(app,server)&#123;</span><br><span class="line">        app.get(<span class="string">'/api/mock.json'</span>,(req,res)=&gt;&#123;</span><br><span class="line">            res.json(&#123;</span><br><span class="line">                data: <span class="string">'hello world'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    after()&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样设置好之后，我们启动这个 <code>dev-server</code>服务器，也就是<code>npm run dev</code>,然后<code>http://localhost:8080/api/mock.json</code>就可以访问了，它会给我们返回<code>hello world</code>,这样就可以来模拟后台接口返回数据了。<br>根据接口文档的格式，先写好请求格式，等到之后联调接口，就只需要替换一下地址就可以啦，是不是很方便呢。。。</p>
+<h2 id="1-3-Hot-Module-Replacement-HMR-热模块替换"><a href="#1-3-Hot-Module-Replacement-HMR-热模块替换" class="headerlink" title="1.3 Hot Module Replacement (HMR:热模块替换)"></a>1.3 Hot Module Replacement (HMR:热模块替换)</h2><p>之前我们设置<code>dev-server</code>,他是通过刷新整个页面，更新代码，那这样的话，我们在页面上做的操作就会没有了，那我们要是想要只更新我们更改的代码应该怎么办呢？？？<br><code>HMR</code> 就是帮我们做这件事情的，它只会刷新局部，也就是我们更改代码的地方，而我们之前在页面的操作还会保留着。</p>
+<p>启动 <code>hmr</code> , 在<code>dev-server</code>中设置  <code>hot: true</code>, 在头部引入 <code>webpack</code>, 需要使用 <code>webpack.HotModuleReplacementPlugin()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line">devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">"./dist"</span>,</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    hot:<span class="literal">true</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">plugins： [</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的配置，我们试一下，发现浏览器还是刷新了，那要注意了，这里还有一点，需要增加一个 <code>httpOnly: true</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">"./dist"</span>,</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    hot:<span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//即便HMR不⽣效，浏览器也不⾃动刷新，就开启hotOnly</span></span><br><span class="line">    <span class="comment">//这为什么会失效呢??它会和MiniCssExtractPlugin.loader有冲突，如何开启了这个css，那么热模块替换就会失效</span></span><br><span class="line">    hotOnly:<span class="literal">true</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>上面我们设置了<code>hotOnly:true</code>,这样，热模块替换就开启成功了。<br><strong>这里有一个注意的地方：</strong> <code>HMR</code> 有时会不生效，这是它和 <code>MiniCssExtractPlugin.loader</code> 会冲突，这个插件是用来<code>提取css成单独文件的</code>，后面在优化部分我们会讲到。。所以，我们一般推荐开发模式下不开启MiniCssExtractPlugin插件，开发模式下也不需要， 在生产模式下才提取css，而且生产模式下也不需要热模块替换了。</p>
+<p>上面说的这些，只是<code>css</code> 的 HMR，下面我们在看看 <code>js</code>的 HMR</p>
+<p>** 需要使⽤module.hot.accept来观察模块更新 从⽽更新**<br>在入口的地方</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">module</span>.hot) &#123;</span><br><span class="line">    <span class="built_in">module</span>.hot.accept(<span class="string">"./other.js"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//....</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在最上层入口，通过监听某个模块，来做一些替换操作。。</p>
+<p>这种方式，好像不够高效，那我们平时项目都是怎么做的呢？？？<br>现在我们开发基本都是使用框架了，react or  Vue, 应该很少有用原生js来写的了。所以社区已经为我们提供了loader来和各种框架和库平滑地交互了。</p>
+<ul>
+<li>React Hot Loader：实时调整 react 组件。</li>
+<li>Vue Loader：此 loader 支持 vue 组件的 HMR，提供开箱即用体验。</li>
+<li>Elm Hot Loader：支持 Elm 编程语言的 HMR。</li>
+<li>Angular HMR：没有必要使用 loader！直接修改 NgModule 主文件就够了，它可以完全控制 HMR API。<br>想了解更多的朋友，请戳 <a href="https://webpack.docschina.org/guides/hot-module-replacement/#%E5%90%AF%E7%94%A8-hmr" target="_blank" rel="noopener">这里</a></li>
+</ul>
+<h1 id="二、Babel-处理-ES6"><a href="#二、Babel-处理-ES6" class="headerlink" title="二、Babel 处理 ES6"></a>二、Babel 处理 ES6</h1><p>官⽅⽹站：<a href="https://babeljs.io/" target="_blank" rel="noopener">https://babeljs.io/</a><br>中⽂⽹站：<a href="https://www.babeljs.cn/" target="_blank" rel="noopener">https://www.babeljs.cn/</a><br><code>Babel</code> 是<code>JavaScript</code> 编译器，能将ES6代码转换成ES5代码，让我们开发过程中放⼼使⽤JS新特性⽽不⽤担<br>⼼兼容性问题。并且还可以通过插件机制根据需求灵活的扩展。<br>Babel在执⾏编译的过程中，会从项⽬根⽬录下的 <code>.babelrc</code> JSON⽂件中读取配置。没有该⽂件会从<br>loader的options地⽅读取配置。</p>
+<p>安装依赖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-loader @babel/core @babel/preset-env -D</span><br></pre></td></tr></table></figure>
+
+<p><code>babel-loader</code> 是 webpack 与 babel的通信桥梁，不会做把es6转成es5的⼯作，这部分⼯作需要⽤到<br><code>@babel/preset-env</code> 来做, @babel/preset-env⾥包含了es，6，7，8转es5的转换规则</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">    exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">    use: &#123;</span><br><span class="line">        loader: <span class="string">"babel-loader"</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">            presets: [<span class="string">"@babel/preset-env"</span>] </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>未完待续…</p>
+<p>————-如果以上内容有不对的地方，还请大家指正————</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://blog.eyes487.top" target="_blank">eyes487的博客</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/05/16/webpack-first.html" class="next-post btn btn-default" title='webpack深入学习（一）：基础配置篇'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            webpack深入学习（一）：基础配置篇</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+    <script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、webpack-dev-server"><span class="toc-text">一、webpack-dev-server</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-解决跨域"><span class="toc-text">1.1 解决跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-本地mock数据"><span class="toc-text">1.2 本地mock数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Hot-Module-Replacement-HMR-热模块替换"><span class="toc-text">1.3 Hot Module Replacement (HMR:热模块替换)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Babel-处理-ES6"><span class="toc-text">二、Babel 处理 ES6</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2019
+                </span> |
+                <span>
+                   哈哈哈
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/line.js?rev=@@hash"></script>
+<script src="/js/bubble.js?rev=@@hash"></script>
+<script src="/js/shape.js?rev=@@hash"></script>
+<script src="/js/app.js?rev=@@hash"></script>
+</body>
+</html>
