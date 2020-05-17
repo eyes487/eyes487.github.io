@@ -388,8 +388,9 @@ module.exports={
 
 #### **html-webpack-plugin**
 
-上面也说到了，我们需要一个plugin来帮我们自动引用打包文件。
-首先创建一个'public/index.html'
+上面也说到了，我们需要一个plugin来帮我们自动引用打包文件，不用每次自己在html中引用打包的js了。
+
+首先创建一个`public/index.html`
 
 安装依赖
 ```bash
@@ -403,7 +404,7 @@ plugins:[
         })
     ]
 ```
-这样在打包的时候，就可以把index.html也打包进dist目录，并且引用打包的js文件了
+这样在打包的时候，就可以把`index.html`也打包进`dist`目录，并且引用打包的js文件了
 
 
 这些配置，都是一些平时用到的基础配置，下一篇会拓展一些项目中用到的其他配置
