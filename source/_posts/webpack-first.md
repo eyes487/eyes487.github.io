@@ -532,6 +532,7 @@ module.exports={
     }
 }
 ```
+下一篇文章中，我们会讲到webpack更多的配置项，这里已经满足了基本配置了。
 
 ## 4.6 sourcemap
 
