@@ -26,7 +26,7 @@ date: 2020-02-26
 const initState = {a: 1,b: 3}
 
 function counterReducer(state = initState,action){
-    const {type,payload}
+    const {type,payload} = action;
     switch(type){
         case "ADD":
             let a = state.a + payload;
@@ -39,7 +39,7 @@ function counterReducer(state = initState,action){
     }
 }
 //通过createStore创建唯一数据源
-const store = createStore(numReducer);
+const store = createStore(counterReducer);
 ```
 在页面上通过dispatch,发送action更改数据
 ```js
@@ -179,7 +179,7 @@ export function createStore(reducer, enhancer){
     }
 }
 ```
-`enhancer`,增加`createStore`函数，然后返回一个函数，接受reducer，还是和之前一样
+`enhancer`,加强`createStore`函数，然后返回一个函数，接受reducer，还是和之前一样
 
 下面看看`applyMiddleware`的具体实现方法
 ```js
