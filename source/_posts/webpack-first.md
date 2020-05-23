@@ -120,7 +120,7 @@ module.exports={
         filename: "main.s"
     }
 }
-````
+```
 
 这就是webpack的默认配置了，webpack4⽀持`零配置`使⽤,但是很弱，稍微复杂些的场景都需要额外扩展，下面就来看看更多的配置吧
 
@@ -499,60 +499,6 @@ plugins:[
 ```
 这样在打包的时候，就可以把`index.html`也打包进`dist`目录，并且引用打包的js文件了
 它还有很多其他的配置项，这里就不一一列举了，感兴趣的可以自己试一下，戳[这里](https://github.com/jantimon/html-webpack-plugin)
-
-### **webpack-dev-server**
-还有一个问题，我们不能每次修改了一个文件就重新打包一次吧，如何让每次修改文件都自动刷新呢，也就是平时所说的热更新，那就需要用到`webpack-dev-server`了
-
-```bash
-npm install webpack-dev-server -D
-```
-然后在package.json中设置
-```js
-"scripts": {
-    //...
-    "dev": "webpack-dev-server"
-  },
-```
-启动项目
-```bash
-npm run dev
-```
-看到下面这个提示，就说明已经启动成功了，在`http://localhost:8080/`
-![webpack](http://fs.eyes487.top:9999/uploads/1589713844017-webpack9.png "图10")
-这样之后修改页面，它就会自动帮我们刷新了。这时，会发现，dist目录下被清空了，因为现在都是通过内存来读取文件，这样反应速度会更快了。还可以在`devserver`中做一些配置项
-```js
-//webpack.config.js
-module.exports={
-    //...
-    devserver:{
-        contentBase: path.resolve(__dirname,"./dist")，//把这里当成静态目录了
-        open: true, //是都自动打开浏览器窗口
-        port: 8080,
-        //...
-    }
-}
-```
-下一篇文章中，我们会讲到webpack更多的配置项，这里已经满足了基本配置了。
-
-## 4.6 sourcemap
-
-源代码与打包后的代码的映射关系，通过sourceMap定位到源代码。
-在开发模式下，是默认开启sourcemap的，所以我们平时开发的时候，出现了错误，都会直接定位到源文件。那生产模式又是怎么配置的呢？
-```js
-//webpack.config.js
-module.exports = {
-    //...
-    devtool: 'source-map'， //cheap-eval-source-map  ...
-}
-```
-开启这个选项之后，它会生成一个对应的 `.map`文件，里面表示打包文件和源代码的关系映射。
-
-它还有很多可以其他可以选择的模式，每个模式的构建速度和结果不同，信息越详细，构建速度越慢，所以需要权衡这两个方面。
-如果想了解更多选项，请戳[这里](https://www.webpackjs.com/configuration/devtool/)
-
-生产环境是不建议开启sourcemap的，但是有一些特殊场景，比如要做错误解析，需要开启sourcemap的话，也不要把map文件上传到公网上，这样比较安全。
-
-
 
 
 上面做了一个webpack的最基本配置，算是对webpack的一些基本了解。下一篇会拓展一些项目中用到的其他配置
