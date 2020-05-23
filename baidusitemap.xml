@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://blog.eyes487.top/2020/05/17/webpack-two.html</loc>
-    <lastmod>2020-05-23</lastmod>
-  </url>  <url>
     <loc>http://blog.eyes487.top/2019/11/16/a-picture-bed.html</loc>
     <lastmod>2020-05-23</lastmod>
   </url>  <url>
@@ -50,6 +47,12 @@
     <lastmod>2020-05-23</lastmod>
   </url>  <url>
     <loc>http://blog.eyes487.top/2020/05/16/webpack-first.html</loc>
+    <lastmod>2020-05-23</lastmod>
+  </url>  <url>
+    <loc>http://blog.eyes487.top/2020/05/23/webpack-three.html</loc>
+    <lastmod>2020-05-23</lastmod>
+  </url>  <url>
+    <loc>http://blog.eyes487.top/2020/05/17/webpack-two.html</loc>
     <lastmod>2020-05-23</lastmod>
   </url>
 </urlset>

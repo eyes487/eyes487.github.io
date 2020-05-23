@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="eyes487的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <meta name="google-site-verification" content="kh2qynWK0TEziuoSJmSB1lNTaVoVXykqpgCSyD1FtWA">
+    <link rel="dns-prefetch" href="http://blog.eyes487.top">
+    <!--SEO-->
+
+<meta name="keywords" content="js,webpack">
+
+
+<meta name="description" content="前两篇文章，讲解了一些webpack的基本配置，但是随着我们代码越来越多，我们构建的时间也会越来越长，今天就会对webpack做一些优化配置，帮助我们减少构建时间，同时也帮助我们优化输出的代码质...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    webpack深入学习（三）：优化篇 |
+    
+    eyes487的博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="eyes487的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/./favicon.ico">
+
+    
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1278192097 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1278192097%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278192097'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278192097%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</div>
+
+
+
+
+    
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='xm'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://blog.eyes487.top">
+                        eyes487的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa fa-html5"></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-clock-o"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="webpack深入学习（三）：优化篇">
+            
+            webpack深入学习（三）：优化篇
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/js/">js</a> <a class="tag-link" href="/tags/webpack/">webpack</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/05/23</span>
+    </span>
+    
+    <!-- <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span> -->
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>前两篇文章，讲解了一些webpack的基本配置，但是随着我们代码越来越多，我们构建的时间也会越来越长，今天就会对webpack做一些优化配置，帮助我们减少构建时间，同时也帮助我们优化输出的代码质量，让代码在生产环境能够更快的让用户访问到。</p>
+<h1 id="一、缩⼩文件范围"><a href="#一、缩⼩文件范围" class="headerlink" title="一、缩⼩文件范围"></a>一、缩⼩文件范围</h1><p>优化<code>loader</code>配置,loader是一个消性能的大户，官方不建议使用过多的loader，但是我们又不能不用</p>
+<ul>
+<li><code>test</code> <code>include</code> <code>exclude</code> 三个配置项来缩⼩loader的处理范围</li>
+<li>include: 只去哪里查找</li>
+<li>exclude: 排除，不去哪里查找<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">    include: path.resolve(__dirname,<span class="string">"./src"</span>), </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="二、resolve"><a href="#二、resolve" class="headerlink" title="二、resolve"></a>二、resolve</h1><h2 id="优化resolve-modules配置"><a href="#优化resolve-modules配置" class="headerlink" title="优化resolve.modules配置"></a>优化resolve.modules配置</h2><p><code>resolve.modules</code> 用于配置webpack去哪些目录下寻找第三方模块，默认是[‘node_modules’],如果没有找到，就会去上一级⽬目录<code>../node_modules</code> 找，再没有会去<code>../../node_modules</code>中找，以此类推，和Node.js的模块寻找机制很类似.<br>如果我们的第三⽅方模块都安装在了了项⽬目根⽬目录下，就可以直接指明这个路路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    resolve:&#123;</span><br><span class="line">        modules: [path.resolve(__dirname, <span class="string">"./node_modules"</span>)]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化resolve-alias配置"><a href="#优化resolve-alias配置" class="headerlink" title="优化resolve.alias配置"></a>优化resolve.alias配置</h2><p><code>resolve.alias</code> 配置通过别名来将原导⼊路径映射成一个新的导⼊路径<br>拿<code>react</code>为例，我们引⼊的react库，一般存在两套代码</p>
+<ul>
+<li>cjs: 采⽤用<code>commonJS</code>规范的模块化代码</li>
+<li>umd: 已经打包好的完整代码，没有采用模块化，可以直接执⾏</li>
+</ul>
+<p>默认情况下，<code>webpack</code>会从⼊口文件<code>./node_modules/bin/react/index</code>开始递归解析和处理依赖的文件。我们可以直接指定文件，避免这处的耗时。使用绝对路径也可以减少构建时间，因为相对路径最后也是转换为绝对路径</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    resolve:&#123;</span><br><span class="line">        modules: [path.resolve(__dirname, <span class="string">"./node_modules"</span>)],</span><br><span class="line">        alias: &#123;</span><br><span class="line">            react: path.resolve(__dirname,<span class="string">"./node_modules/react/umd/react.production.min.js"</span>  ),</span><br><span class="line">            <span class="string">"react-dom"</span>: path.resolve(__dirname,<span class="string">"./node_modules/react-dom/umd/react-dom.production.min.js"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化resolve-extensions配置"><a href="#优化resolve-extensions配置" class="headerlink" title="优化resolve.extensions配置"></a>优化resolve.extensions配置</h2><p><code>resolve.extensions</code>在导⼊语句没带⽂件后缀时，<code>webpack</code>会自动带上后缀后，去尝试查找文件是否存在<br><code>extensions</code>就是来配置这个后缀列表的，webpack默认只支持<code>js和json</code> 文件，如果想支持其他的，就可以在这个列表中添加。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">    resolve:&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        extensions: [<span class="string">'.js'</span>,<span class="string">'.json'</span>,<span class="string">'.ts'</span>,...]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是去查找列表需要消耗时间，所以不建议设置很多</p>
+<ul>
+<li>后缀尝试列表尽量的小</li>
+<li>导入语句尽量的带上后缀</li>
+<li>频率高的放在最前面</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://blog.eyes487.top" target="_blank">eyes487的博客</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/05/17/webpack-two.html" class="next-post btn btn-default" title='webpack深入学习（二）：进阶篇'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            webpack深入学习（二）：进阶篇</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+    <script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、缩⼩文件范围"><span class="toc-text">一、缩⼩文件范围</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、resolve"><span class="toc-text">二、resolve</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#优化resolve-modules配置"><span class="toc-text">优化resolve.modules配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化resolve-alias配置"><span class="toc-text">优化resolve.alias配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化resolve-extensions配置"><span class="toc-text">优化resolve.extensions配置</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2019
+                </span> |
+                <span>
+                   哈哈哈
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/line.js?rev=@@hash"></script>
+<script src="/js/bubble.js?rev=@@hash"></script>
+<script src="/js/shape.js?rev=@@hash"></script>
+<script src="/js/app.js?rev=@@hash"></script>
+</body>
+</html>
