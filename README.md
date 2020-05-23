@@ -3,6 +3,9 @@ Blog based on Hexo + Git + travis-ci
 基于 hexo + git + travis-ci 的博客
 
 [访问地址](http://blog.eyes487.top)
+[webpack深入学习（三）：优化篇](https://blog.eyes487.top/2020/05/23/webpack-three.html)
+
+[webpack深入学习（二）：进阶篇](https://blog.eyes487.top/2020/05/17/webpack-two.html)
 
 [webpack深入学习（一）：基础配置篇](https://blog.eyes487.top/2020/05/16/webpack-first.html)
 
