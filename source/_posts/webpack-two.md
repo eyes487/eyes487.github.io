@@ -16,7 +16,7 @@ date: 2020-05-17
 
 首先安装依赖
 ```bash
-npm install webpack-dev-server -D
+npm i webpack-dev-server -D
 ```
 然后在package.json中设置
 ```js
@@ -161,12 +161,13 @@ if (module.hot) {
 `Babel`在执⾏编译的过程中，会从项⽬根⽬录下的 `.babelrc` ⽂件中读取配置。没有该⽂件会从
 `loader的options` 地⽅读取配置。
 
-### babel-loader
+## babel-loader
 
 安装依赖
 ```js
 npm i babel-loader @babel/core @babel/preset-env -D
 ```
+
 `@babel/core` 是babel的核心，babel的功能都依靠它
 `babel-loader` 是 webpack 与 babel的通信桥梁，不会做把es6转成es5的⼯作，这部分⼯作需要⽤到
 `@babel/preset-env` 来做, @babel/preset-env⾥包含了es，6，7，8转es5的转换规则
@@ -185,7 +186,7 @@ npm i babel-loader @babel/core @babel/preset-env -D
 ```
 通过上面的方式，就可以把ES6+语法转换为ES5了。但是你可能会发现一个问题，假如你的代码中有`promise`，或者`async/await`,它并没有被转换，对于那些不支持promise的浏览器，这就是一个麻烦的地方了，这样我们又可以引出一个新的东西`polyfill`(垫片)，可以理解为ES6+的ECMA规范库
 
-### @babel/polyfill
+## @babel/polyfill
 
 首先安装依赖，这个依赖并不是只有开发的时候需要使用，在生产的时候也需要使用
 
@@ -227,7 +228,7 @@ options: {
 **这个polyfill，有一个缺点就是，它会污染全局对象，因为都是直接挂在window上的，比如在开发UI组件的时候。**
 
 
-### @babel/plugin-transform-runtime
+## @babel/plugin-transform-runtime
 
 当我们开发的是组件库，⼯工具库这些场景的时候，`polyfill`就不不适合了了，因为`polyfill`是注⼊入到全局变量量，window下的，`会污染全局环境`，所以推荐闭包⽅方式：`@babel/plugin-transform-runtime`，它不不会造成全局污染
 
@@ -255,7 +256,7 @@ options: {
 ```
 它也是支持按需加载的，他不会造成全局污染，它不会挂载到window上，它通过替换的形式，假如缺少promise，他会创建一个_promise来替换。 更多配置，可以查看[这里](https://babeljs.io/docs/en/babel-plugin-transform-runtime#docsNav)
 
-### @babel/preset-react
+## @babel/preset-react
 我们 在开发react项目的时候，又是如何来解析jsx语法的呢??babel也为我们提供了一个插件
 ```bash
 npm i @babel/preset-react -D
@@ -273,12 +274,14 @@ options: {
 ```
 这个插件就是来做语法解析,这样我们就可以使用jsx语法开发react项目了。当然，如果你不想使用js文件，也可以创建jsx文件，把配置文件后缀名改为`test: /\.jsx$/`就行了。
 
-如果上面`babel`文件配置太多，会让`js`文件显得很庞大。所以我们可以把babel的配置移到它自己的配置文件里`.babelrc`
+如果上面`babel`文件配置太多，会让`js`文件显得很庞大。所以我们可以把babel的配置移到它自己的配置文件里`.babelrc`。
+
 
 # 三、Sourcemap
 
 源代码与打包后的代码的映射关系，通过sourceMap定位到源代码。
-在开发模式下，是默认开启sourcemap的，所以我们平时开发的时候，出现了错误，都会直接定位到源文件。那生产模式又是怎么配置的呢？
+在开发模式下，是默认开启sourcemap的，所以我们平时开发的时候，出现了错误，都会直接定位到源文件。那生产模式又是怎么配置的呢?
+
 ```js
 //webpack.config.js
 module.exports = {
@@ -293,5 +296,59 @@ module.exports = {
 
 生产环境是不建议开启sourcemap的，但是有一些特殊场景，比如要做错误解析，需要开启sourcemap的话，也不要把map文件上传到公网上，这样比较安全。
 
+
+# 四、dev和prod模式 区分打包
+
+把所有配置都放在一个配置文件中，会显得很乱，不利于管理可读性很差，所以我们可以对不同环境做一下区分，在通过`webpack-merge` 来合并配置
+
+三个配置文件
+* `webpack.base.config.js` 基础配置
+* `webpack.dev.config.js`  开发独有的配置
+* `webpack.prod.config.js` 生产独有的配置
+
+安装这个插件
+```bash
+npm i webpack-merge -D
+```
+
+配置文件
+```js
+//webpack.dev.config.js
+const merge = require('webpack-merge')
+const baseConfig = require("./webpack.base.config.js")
+
+const devConfig = {
+    //...
+}
+module.exports = merge(baseConfig,devConfig)
+```
+
+在`package.json`中配置脚本
+```js
+"scripts":{
+
+    "dev":"webpack-dev-server --config ./webpack.dev.config.js",
+    "build":"webpack --config ./webpack.prod.config.js"
+}
+```
+之后执行 `npm run dev`或者`npm run build` 来分别打包了
+
+## 基于环境变量区分
+平时我们在代码中，可能也需要针对生产或者是开发环境，做一些配置，那如何获取到当前的环境呢???
+
+安装
+```bash
+npm i cross-env -D
+```
+`cross-env`这个插件，是用来抹平各个操作系统之间的差异，比如windows和mac它们的使用路径的方式可能是不一样的
+
+在package.json中设置
+```js
+"dev": "cross-env NODE_ENV=dev webpack --config ./webpack.dev.config.js",
+```
+那我们在代码中就可以拿到
+```js
+process.env.NODE_ENV  //dev
+```
 
 -------------如果以上内容有不对的地方，还请大家指正------------
