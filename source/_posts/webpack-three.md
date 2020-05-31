@@ -204,4 +204,317 @@ module.exports={
 }
 ```
 
-# 七、
+# 七、tree Shaking
+
+`webpack2.x` 开始⽀持 `tree shaking` 概念，顾名思义，`"摇树"`，清除⽆用 `css,js(Dead Code)`
+Dead Code 一般具有以下几个特征
+* 码不会被执⾏，不可到达
+* 代码执⾏的结果不会被用到
+* 代码只会影响死变量(只写不读)
+* Js tree shaking只⽀持ES module的引入方式！！！！
+
+## Css tree shaking
+安装依赖
+```bash
+npm i glob-all  purify-css purifycss-webpack -D
+```
+```js
+const PurifyCSS=require('purifycss-webpack') 
+const glob=require('glob-all')
+module.exports={
+    //...
+    plugins:[
+        // 清除⽆用 css
+        new PurifyCSS({
+            paths: glob.sync([
+                // 要做 CSS Tree Shaking 的路径文件
+                path.resolve(__dirname, './src/*.html'), // 请注意，我们同样需要对 html 文件进行 tree shaking
+                path.resolve(__dirname, './src/*.js')      
+            ])    
+        })
+    ]
+}
+```
+这样，在页面中并没有用到的css就会被摇掉
+
+## Js tree shaking
+只支持`import`⽅式引入，不支持`commonjs`的方式引⼊
+
+只需要在配置文件中配置就行，不需要额外的插件
+```js
+optimization: {
+    usedExports: true// 哪些导出的模块被使⽤用了了，再做打包
+}
+```
+只要`mode`是`production`就会生效，develpoment的`tree shaking`是不⽣生效的，因为webpack为了⽅便你的调试
+可以查看打包后的代码注释以辨别是否生效。
+
+**生产模式不需要做上面配置，默认开启**
+
+## 副作用
+
+```js
+//package.json
+"sideEffects":false  //正常对所有模块进行tree shaking  , 仅生产模式有效，需要配合usedExports
+
+//或者在数组面排除不需要tree shaking的模块
+"sideEffects":['*.css','@babel/polyfill']
+```
+
+# 八、code Splitting
+
+**单页面应用spa:**
+打包完成，所有页面只生成一个bundle.js
+* 代码体积变大，不利于下载
+* 没有合理利用浏览器资源(比如谷歌，可以同时发送6个tcp连接)
+
+**多页面应用mpa:**
+如果多个页面引入了一些公共模块，那么可以把这些公共的模块抽离出来，单独打包，公共代码只需要下载一次缓存起来，避免重复下载
+
+```js
+module.expports={
+    optimization: {    
+        splitChunks: {      
+            chunks: "all", // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件    
+        },  
+    }
+}
+```
+splitChunks还有一些其他配置
+```js
+optimization: {
+    splitChunks: {
+        chunks: 'async',//对同步 initial，异步 async，所有的模块有效 all
+        minSize: 30000,//最⼩尺寸，当模块大于30kb
+        maxSize: 0,//对模块进行二次分割时使用，不推荐使用
+        minChunks: 1,//打包⽣成的chunk文件最少有几个chunk引用了这个模块
+        maxAsyncRequests: 5,//最⼤异步请求数，默认5
+        maxInitialRequests: 3,//最大初始化请求书，⼊口文件同步请求，默认3
+        automaticNameDelimiter: '-',//打包分割符号
+        name: true,//打包后的名称，除了布尔值，还可以接收一个函数function
+        cacheGroups: {//缓存组
+            vendors: {
+                test: /[\\/]node_modules[\\/]/,
+                name:"vendor", // 要缓存的分隔出来的 chunk 名称
+                priority: -10//缓存组优先级数字越大，优先级越高        
+            },
+            other:{
+                chunks: "initial", // 必须三选一： "initial" | "all" | "async"(默认就是async)
+                test: /react|lodash/, // 正则规则验证，如果符合就提取 chunk,
+                name:"other",
+                minSize: 30000,
+                minChunks: 1,        
+            },
+            default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true//可设置是否重⽤用该chunk        
+            }      
+        }    
+    }  
+}
+```
+
+# 九、Scope Hoisting
+
+作⽤域提升`（Scope Hoisting）`是指 webpack 通过 ES6 语法的静态分析，分析出模块之间的依赖关系，尽可能地把模块放到同一个函数中。下⾯通过代码示例来理解
+```js
+// hello.js
+export default'Hello, Webpack';
+// index.js
+import str from'./hello.js';
+console.log(str);
+```
+打包后，这两个文件会被打包成两个文件
+
+通过配置
+```js
+module.exports={
+    optimization:{
+        concatenateModules: true
+    }
+}
+```
+这样，`hello.js`和`index.js`就合并成一个函数了，这样打包出来的文件会更小，运行更快
+
+# 十、使用工具量化
+`speed-measure-webpack-plugin` 可以测量各个插件和loader所花费的时间
+
+安装依赖
+```bash
+npm i speed-measure-webpack-plugin -D
+```
+```js
+//webpack.config.js
+const SpeedMeasurePlugin=require("speed-measure-webpack-plugin");
+const smp=newSpeedMeasurePlugin();
+const config= {
+    //...webpack配置
+}
+module.exports=smp.wrap(config);
+```
+
+`webpack-bundle-analyzer` 分析webpack打包后的模块依赖关系
+安装依赖
+```bash
+npm i webpack-bundle-analyzer -D
+```
+```js
+const BundleAnalyzerPlugin=require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+module.exports=merge(baseWebpackConfig, {
+    //....
+    plugins: [
+        //...
+        new BundleAnalyzerPlugin(),    
+    ]
+})
+```
+启动webpack 构建，会默认打开一个窗⼝
+
+# 十一、DLLPlugin 打包插件第三方库，提前编译
+Dll动态链接库 ，其实就是做缓存
+
+项⽬中引⼊了很多第三方库，这些库在很长的一段时间内，基本不会更新，打包的时候分开打包来提升打包速度，⽽`DllPlugin` 动态链接库插件，**其原理就是把网页依赖的基础模块抽离出来打包到dll文件中，当需要导⼊的模块存在于某个dll中时，这个模块不再被打包，而是去dll中获取**，这是帮助我们在`开发` 的时候，提升速度，对生产不会有什么影响
+
+动态链接库只需要被编译一次，项目中用到的第三方模块，很稳定，例如react,react-dom，只要没有升级的需求
+webpack已经内置了对动态链接库的支持
+* `DllPlugin`:⽤于打包出一个单独的动态链接库文件
+* `DllReferencePlugin`：⽤于在主要的配置文件中引⼊DllPlugin插件打包好的动态链接库文件
+
+首先，新建一个`webpack.dll.config.js`,这里就用`react`和`react-dom`举例
+```js
+const path = require("path");
+const {DllPlugin} = require("webpack");
+
+module.exports = {
+        mode: "development",
+        entry: {
+            react: ["react", "react-dom"] //! node_modules?  
+        },
+        output: {
+            path: path.resolve(__dirname, "./dll"),
+            filename: "[name].dll.js",
+            library: "react"  
+        },
+        plugins: [
+            new DllPlugin({
+                // manifest.json文件的输出位置
+                path: path.join(__dirname, "./dll", "[name]-manifest.json"),
+                // 定义打包的公共vendor文件对外暴露的函数名
+                name: "react"    
+            })  
+        ]
+}
+```
+在package.json中添加
+```bash
+"dev:dll": "webpack --config ./webpack.dll.config.js"
+```
+然后运行 `npm run dev:dll`
+打包完成，你会发现多了一个dll文件，里面有react.dll.js文件，这时已经单独打包出来了
+* dll⽂件包含了⼤量模块的代码，这些模块被存放在一个数组里。用数组的索引号为ID,通过变量将自己暴露在全局中，就可以在window.xxx访问到其中的模块
+* Manifest.json 描述了与其对应的dll.js包含了哪些模块，以及ID和路路径。
+
+那接下来看看如何使用??
+在配置文件中`webpack.dev.config.js`
+```js
+new DllReferencePlugin({
+    manifest: path.resolve(__dirname,"./dll/react-manifest.json")    
+})
+```
+然后还需要在模板文件中，添加链接
+```html
+<!-- src/index.html -->
+<script type="text/javascript" src="../dll/react.dll.js"></script>
+```
+手动添加使用，体验不好，这里推荐使用`add-asset-html-webpack-plugin`插件帮助我们做这个事情。
+
+安装
+```bash
+npm i add-asset-html-webpack-plugin -D
+```
+它会将我们打包后的 dll.js ⽂件注入到我们生成的 index.html 中。在 `webpack.base.config.js` ⽂件中进⾏更改
+```js
+new AddAssetHtmlWebpackPlugin({
+    filepath: path.resolve(__dirname, '../dll/react.dll.js') // 对应的 dll ⽂文件路路径 
+})
+```
+
+在`webpack5`中，我们使用`HardSourceWebpackPlugin`来做优化,它会缓存在硬件上，和`DLL`相比，一样的优化效果，但是使⽤却及其简单
+* 提供中间缓存的作⽤用
+* 首次构建没有太大的变化
+* 第二次构建时间就会有较大的节省
+
+安装
+```bash 
+npm i hard-source-webpack-plugin -D
+```
+```js
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+module.exports = {
+    plugins: [
+        new HardSourceWebpackPlugin()
+    ]
+}
+```
+
+# 十二、happyPack
+
+运行在 Node之上的Webpack是单线程模型的，也就是说Webpack需要⼀个一个地处理任务，不能同时处理多个任务。`Happy Pack`就能让Webpack做到这一点，它将任务分解给多个子进程去并发执行，子进程处理完后再将结果发送给主进程。从而发挥多核 CPU 电脑的威力
+
+安装
+```bash
+npm i happyPack -D
+```
+在配置文件中
+```js
+const os = require('os')
+const Happypack = require('happypack')
+
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
+//根据操作系统来判断开启几个进程
+
+module.exports = {
+    //...
+    module:{
+        rules:[
+            //...
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [{ 
+                    // 一个loader对应⼀一个id
+                    loader: "happypack/loader?id=babel"
+                }]
+            }, 
+            {
+                test: /\.css$/,
+                include: path.resolve(__dirname, "./src"),
+                use: ["happypack/loader?id=css"]
+            }
+        ],
+    },
+    plugins:[
+        //...
+        new HappyPack({
+            // ⽤唯一的标识符id，来代表当前的HappyPack是⽤来处理一类特定的文件
+            id: 'babel', 
+            // 如何处理理.js⽂文件，⽤用法和Loader配置中⼀一样
+            loaders: ['babel-loader?cacheDirectory'],
+            threadPool: happyThreadPool,
+        }), 
+        new HappyPack({
+            id: "css",
+            loaders: ["style-loader", "css-loader"]
+        }),
+    ]
+}
+```
+
+`happypack`主要是用来处理loader的，因为它比较费时。在`module`中定义了几个`id`，下面就要创建几个happaypack的实例
+
+**使用happypack不一定会使打包加快，因为开启多线程需要时间，这不适用于小项目，构建时间较久的时候才需要用到这个**
+
+需要注意：
+* `happypack`和`mini-css-extract-plugin`一起使用，会有问题,[了解更多](https://github.com/amireh/happypack/issues/242)
+
