@@ -251,4 +251,9 @@ function bindActionCreator(actionCreator, dispatch) {
   }
 ```
 这差不多就实现了一个简单的`react-redux`了。
+
+[源码地址](https://github.com/eyes487/react-source-learn)
+
+
+
 -------------如果以上内容有不对的地方，还请大家指正------------
