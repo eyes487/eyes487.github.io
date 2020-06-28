@@ -210,7 +210,7 @@ Vue 最独特的特性之一，是其非侵入性的响应式系统。数据模�
 <ul>
 <li>设置<code>_ob_</code>属性，</li>
 <li>判断类型是数组还是对象，对象就直接处理，如果是数组就替换数组原型，能改变数组值的只有7个数组方法</li>
-<li>‘push’,’pop’,’shift’,’unshift’,’splice’,’sort’,’reverse’</li>
+<li><code>push</code>,<code>pop</code>,<code>shift</code>,<code>unshift</code>,<code>splice</code>,<code>sort</code>,<code>reverse</code></li>
 <li>然后遍历对象对每个key值执行 <code>defineReactive</code> 方法</li>
 <li>其次，还额外创建了一个Dep，这是用来管理$set方法增加的属性，通知页面更新，或者数组删除和新增了元素</li>
 </ul>
