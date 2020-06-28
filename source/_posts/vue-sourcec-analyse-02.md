@@ -243,10 +243,12 @@ export function initState (vm: Component) {
   }
 }
 ```
-数据响应式，这是很重要的一部分，先大致看看做了什么操作，[详细了解](https://blog.eyes487.top/2019/09/10/vue-sourcec-analyse-03.html)
+数据响应式，这是很重要的一部分，先大致看看做了什么操作，[详细了解](https://blog.eyes487.top/2020/01/28/vue-sourcec-analyse-03.html)Vue源码解析（三）：数据响应式
+
+
 ### 2.7 $mount
 
-下面就执行挂载方法了Vue源码解析（三）：数据响应式
+下面就执行挂载方法了
 ```js
 if (vm.$options.el) {
       vm.$mount(vm.$options.el)
