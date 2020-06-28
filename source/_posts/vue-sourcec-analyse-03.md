@@ -169,7 +169,7 @@ export class Observer {
 在Observer构造函数中，
 * 设置`_ob_`属性，
 * 判断类型是数组还是对象，对象就直接处理，如果是数组就替换数组原型，能改变数组值的只有7个数组方法
-* 'push','pop','shift','unshift','splice','sort','reverse'
+* `push`,`pop`,`shift`,`unshift`,`splice`,`sort`,`reverse`
 * 然后遍历对象对每个key值执行 `defineReactive` 方法
 * 其次，还额外创建了一个Dep，这是用来管理$set方法增加的属性，通知页面更新，或者数组删除和新增了元素
 
