@@ -176,3 +176,11 @@ if (!__DEV__) {
 
 在debug模式下，没有问题
 如果不开启debugger-ui， Date.parse就获取不到数据，暂不知道原因，用的moment来处理时间
+
+## 10. android.support.v4.content.FileProvider找不到问题
+
+我在使用 `react-native-doc-viewer`的时候遇到这个问题，因为我给项目升级了`androidX`,所以导致和这个库里面不兼容，(ps:同时这个库的sdk版本太旧，需要自己修改匹配自己的项目的才能打包)。
+![fileprovider问题](http://fs.eyes487.top:9999/uploads/08aa3bccf9f2cde1d7892884db3871ee.png)
+
+解决方法： 找到上图报错的文件夹，修改`android.support.v4.content.FileProvider` 为 `androidx.core.content.FileProvider`
+可以把这个库fork到自己的仓库，之后就引用自己仓库的，就不用重装依赖之后，每次都修改了
