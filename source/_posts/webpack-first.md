@@ -225,7 +225,7 @@ body{
 ```js
 //index.js
 import 'index.css'
-````
+```
 
 ```js
 //webpack.config.js
@@ -373,7 +373,6 @@ module:{
         //...
             {
                 test: /\.(png|jpe?g|gif)$/,
-                //less-loaser: 会把less转换为css文件
                 use: {
                     loader: "file-loader",
                     options: {
