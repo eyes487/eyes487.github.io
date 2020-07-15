@@ -25,7 +25,7 @@ date: 2020-05-23
 ## 优化resolve.modules配置
 
 `resolve.modules` 用于配置webpack去哪些目录下寻找第三方模块，默认是['node_modules'],如果没有找到，就会去上一级⽬目录`../node_modules` 找，再没有会去`../../node_modules`中找，以此类推，和Node.js的模块寻找机制很类似.
-如果我们的第三⽅方模块都安装在了了项⽬目根⽬目录下，就可以直接指明这个路路径。
+如果我们的第三方模块都安装在了项目根目录下，就可以直接指明这个路径。
 ```js
 //webpack.config.js
 module.exports={
@@ -39,7 +39,7 @@ module.exports={
 
 `resolve.alias` 配置通过别名来将原导⼊路径映射成一个新的导⼊路径
 拿`react`为例，我们引⼊的react库，一般存在两套代码
-* cjs: 采⽤用`commonJS`规范的模块化代码
+* cjs: 采用`commonJS`规范的模块化代码
 * umd: 已经打包好的完整代码，没有采用模块化，可以直接执⾏
 
 默认情况下，`webpack`会从⼊口文件`./node_modules/bin/react/index`开始递归解析和处理依赖的文件。我们可以直接指定文件，避免这处的耗时。使用绝对路径也可以减少构建时间，因为相对路径最后也是转换为绝对路径
@@ -325,7 +325,7 @@ export default'Hello, Webpack';
 import str from'./hello.js';
 console.log(str);
 ```
-打包后，这两个文件会被打包成两个文件
+打包后，这两个文件会被打包成一个文件
 
 通过配置
 ```js
