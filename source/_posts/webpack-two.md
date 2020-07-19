@@ -111,7 +111,7 @@ plugins： [
     new webpack.HotModuleReplacementPlugin()
 ]
 ```
-通过上面的配置，我们试一下，发现浏览器还是刷新了，那要注意了，这里还有一点，需要增加一个 `httpOnly: true`
+通过上面的配置，我们试一下，发现浏览器还是刷新了，那要注意了，这里还有一点，需要增加一个 `hotOnly: true`
 ```js
 devServer: {
     contentBase: "./dist",
@@ -128,7 +128,7 @@ devServer: {
 
 上面说的这些，只是`css` 的 HMR，下面我们在看看 `js`的 HMR
 
-** 需要使⽤module.hot.accept来观察模块更新 从⽽更新**
+**需要使⽤module.hot.accept来观察模块更新 从⽽更新**
 在入口的地方
 ```js
 // index.js
