@@ -184,3 +184,35 @@ if (!__DEV__) {
 
 解决方法： 找到上图报错的文件夹，修改`android.support.v4.content.FileProvider` 为 `androidx.core.content.FileProvider`
 可以把这个库fork到自己的仓库，之后就引用自己仓库的，就不用重装依赖之后，每次都修改了
+
+## 11. 点击Home键退出，再次点击桌面图标启动应用，会再次启动APP，而不是把后台程序显示出来
+
+解决方法一：可以在`AndroidManifest.xml `中修改 `MainActivity` 的 `launchMode`为`SingleTask`
+```js
+<activity
+  android:name="***.MainActivity"
+  android:label="@string/app_name"
+  android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+  android:windowSoftInputMode="adjustResize"
+  android:screenOrientation="portrait"
+  android:launchMode="singleTask">
+```
+解决方式二： 由于 RN 的Activity 继承自 ReactActivity ,所以需要修改源码，在`ReactActivity.java` 的 `onCreate` 的方法添加,没有onCreate方法，就自己添加一个
+```js
+// import android.content.Intent; //Intent
+//...
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+    if (!this.isTaskRoot()) {
+        Intent mainIntent = getIntent();
+        String action = mainIntent.getAction();
+        if (mainIntent.hasCategory(Intent.CATEGORY_LAUNCHER) && action.equals(Intent.ACTION_MAIN)) {
+            finish();
+            return;
+        }
+    }
+  }
+//   mDelegate.onCreate(savedInstanceState); //假如你之前有这个方法的话，没有就可以不写
+  //PS：记得在 super.onCreate() 方法之后，mDelegate.onCreate之前执行有效
+ }
+```
