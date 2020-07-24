@@ -197,7 +197,7 @@ if (!__DEV__) {
   android:screenOrientation="portrait"
   android:launchMode="singleTask">
 ```
-解决方式二： 由于 RN 的Activity 继承自 ReactActivity ,所以需要修改源码，在`ReactActivity.java` 的 `onCreate` 的方法添加,没有onCreate方法，就自己添加一个
+解决方式二： 由于 RN 的Activity 继承自 ReactActivity ,所以需要修改源码，在`MainActivity.java`文件中`ReactActivity` 的 `onCreate` 的方法添加,没有onCreate方法，就自己添加一个
 ```js
 // import android.content.Intent; //Intent
 //...
