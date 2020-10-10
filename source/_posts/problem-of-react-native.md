@@ -216,3 +216,23 @@ protected void onCreate(Bundle savedInstanceState) {
   //PS：记得在 super.onCreate() 方法之后，mDelegate.onCreate之前执行有效
  }
 ```
+
+## 12. Style property 'marginLeft' is not supported by native animated module
+
+在写轮播`(swiper)`的时候,使用到了`Animated`，最开始是使用的`transform`，没有什么问题
+```js
+ <Animated.View
+    style={[
+    styles.content,
+    {
+        transform: [{
+            translateX:  this.state.positionAnimated,
+        }],
+        // marginLeft: this.state.positionAnimated
+    }
+    ]}
+>
+```
+但是，transform有一个问题就是，我需要在轮播每一块元素中添加输入框，在第一块区域中是可以操作的，切换到第二块区域，输入框就选不中了，不能定位到具体的元素上，就想着换一种方式，不用平移，用`marginleft`的方式来实现，换成marginleft之后就出现了这个问题
+
+折腾了好久，发现是在 `Animated.timing`中开启了原生动画`useNativeDriver: true`才导致了这个问题，原生动画并不能支持所有的属性，像`transform` 和 `opacity`可以工作，`flexbox`和` position` 就不行
