@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="eyes487的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <meta name="google-site-verification" content="kh2qynWK0TEziuoSJmSB1lNTaVoVXykqpgCSyD1FtWA">
+    <link rel="dns-prefetch" href="http://blog.eyes487.top">
+    <!--SEO-->
+
+<meta name="keywords" content="React native,Android">
+
+
+<meta name="description" content="公司有需求需要使用PDA扫码，采用的方式是把扫码内容输出到输入框可以拿到扫码结果，这时就需要隐藏软键盘了。我所使用的框架是ReactNative，Keyboard 组件有一个方法 dismiss...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    Android隐藏软键盘 |
+    
+    eyes487的博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="eyes487的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/./favicon.ico">
+
+    
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1278192097 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1278192097%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278192097'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278192097%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</div>
+
+
+
+
+    
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='xm'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://blog.eyes487.top">
+                        eyes487的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa fa-html5"></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-clock-o"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android隐藏软键盘">
+            
+            Android隐藏软键盘
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/Android/">Android</a> <a class="tag-link" href="/tags/React-native/">React native</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/10/10</span>
+    </span>
+    
+    <!-- <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span> -->
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>公司有需求需要使用PDA扫码，采用的方式是把扫码内容输出到输入框可以拿到扫码结果，这时就需要隐藏软键盘了。我所使用的框架是<code>ReactNative</code>，<code>Keyboard</code> 组件有一个方法 <code>dismiss()</code> 可以隐藏软键盘，但是它同时会使文本框失去焦点，这样就拿不到扫码内容，所以这个方法就不行了，就需要用原生的方法来隐藏软键盘。</p>
+<h2 id="1-在-android-app-src-main-java-com-app-文件下创建文件夹-newpda"><a href="#1-在-android-app-src-main-java-com-app-文件下创建文件夹-newpda" class="headerlink" title="1.在 android/app/src/main/java/com/app 文件下创建文件夹 newpda"></a>1.在 android/app/src/main/java/com/app 文件下创建文件夹 newpda</h2><h3 id="在此文件夹下，创建文件-BoardModule-java"><a href="#在此文件夹下，创建文件-BoardModule-java" class="headerlink" title="在此文件夹下，创建文件  BoardModule.java"></a>在此文件夹下，创建文件  <code>BoardModule.java</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.newpda;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactApplicationContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactContextBaseJavaModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.view.inputmethod.InputMethodManager;</span><br><span class="line"><span class="keyword">import</span> com.facebook.infer.annotation.Assertions;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description: Created by eyes487 on 2020/9/2. email：659721336@qq.com</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoardModule</span> <span class="keyword">extends</span> <span class="title">ReactContextBaseJavaModule</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReactApplicationContext reactContext;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BoardModule</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(reactContext);</span><br><span class="line">        <span class="keyword">this</span>.reactContext = reactContext;   <span class="comment">// 获取上下文</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"BoardModule"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *    关闭Edittext软件盘，光标依然正常显示。 </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ReactMethod</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideboard</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Activity currentActivity = getCurrentActivity();</span><br><span class="line">        InputMethodManager mInputMethodManager = (InputMethodManager)</span><br><span class="line">        Assertions.assertNotNull(<span class="keyword">this</span>.reactContext.getSystemService(Context.INPUT_METHOD_SERVICE));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(mInputMethodManager == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        View view = currentActivity.getCurrentFocus();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(view == <span class="keyword">null</span>) view = <span class="keyword">new</span> View(currentActivity);</span><br><span class="line">        mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="同时创建文件-CustomBoardPackage-java"><a href="#同时创建文件-CustomBoardPackage-java" class="headerlink" title="同时创建文件 CustomBoardPackage.java"></a>同时创建文件 <code>CustomBoardPackage.java</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.newpda;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.facebook.react.ReactPackage;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.NativeModule;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.bridge.ReactApplicationContext;</span><br><span class="line"><span class="keyword">import</span> com.facebook.react.uimanager.ViewManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description:</span></span><br><span class="line"><span class="comment"> * Created by eyes487 on 2020/9/2.</span></span><br><span class="line"><span class="comment"> * email：659721336@qq.com</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomBoardPackage</span> <span class="keyword">implements</span> <span class="title">ReactPackage</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;NativeModule&gt; <span class="title">createNativeModules</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        List&lt;NativeModule&gt; modules=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        modules.add(<span class="keyword">new</span> BoardModule(reactContext));</span><br><span class="line">        <span class="keyword">return</span> modules;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ViewManager&gt; <span class="title">createViewManagers</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建完成之后，要在-MainApplication-java-中引用"><a href="#创建完成之后，要在-MainApplication-java-中引用" class="headerlink" title="创建完成之后，要在 MainApplication.java 中引用"></a>创建完成之后，要在 MainApplication.java 中引用</h3><p>android/app/src/main/java/com/app/MainApplication.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//....</span></span><br><span class="line">+ <span class="keyword">import</span> com.newpda.CustomBoardPackage;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> List&lt;ReactPackage&gt; <span class="title">getPackages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Arrays.&lt;ReactPackage&gt;asList(</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">new</span> CustomBoardPackage()   <span class="comment">// 刚刚添加的方法</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原生的方法就配置完成了，只需要在js端引用就行了</p>
+<h2 id="2-在-React代码中引用"><a href="#2-在-React代码中引用" class="headerlink" title="2.在 React代码中引用"></a>2.在 React代码中引用</h2><h3 id="创建一个文件，引用NativeModules，就不用每次都调用了-新建一个nativeHideBoard-js"><a href="#创建一个文件，引用NativeModules，就不用每次都调用了-新建一个nativeHideBoard-js" class="headerlink" title="创建一个文件，引用NativeModules，就不用每次都调用了,新建一个nativeHideBoard.js"></a>创建一个文件，引用NativeModules，就不用每次都调用了,新建一个nativeHideBoard.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;NativeModules&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = NativeModules.BoardModule;</span><br></pre></td></tr></table></figure>
+
+<h3 id="在需要的地方引用"><a href="#在需要的地方引用" class="headerlink" title="在需要的地方引用"></a>在需要的地方引用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BoardModule <span class="keyword">from</span> <span class="string">"./nativeHideBoard"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在输入框获得焦点的时候，隐藏软键盘，输入框也不会失去焦点</span></span><br><span class="line">_inputFocus=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    BoardModule.hideboard();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>————-如果以上内容有不对的地方，还请大家指正————</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://blog.eyes487.top" target="_blank">eyes487的博客</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/05/23/webpack-three.html" class="next-post btn btn-default" title='webpack深入学习（三）：优化篇'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            webpack深入学习（三）：优化篇</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+    <script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-在-android-app-src-main-java-com-app-文件下创建文件夹-newpda"><span class="toc-text">1.在 android/app/src/main/java/com/app 文件下创建文件夹 newpda</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在此文件夹下，创建文件-BoardModule-java"><span class="toc-text">在此文件夹下，创建文件  BoardModule.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同时创建文件-CustomBoardPackage-java"><span class="toc-text">同时创建文件 CustomBoardPackage.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建完成之后，要在-MainApplication-java-中引用"><span class="toc-text">创建完成之后，要在 MainApplication.java 中引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-在-React代码中引用"><span class="toc-text">2.在 React代码中引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个文件，引用NativeModules，就不用每次都调用了-新建一个nativeHideBoard-js"><span class="toc-text">创建一个文件，引用NativeModules，就不用每次都调用了,新建一个nativeHideBoard.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在需要的地方引用"><span class="toc-text">在需要的地方引用</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2019
+                </span> |
+                <span>
+                   哈哈哈
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/line.js?rev=@@hash"></script>
+<script src="/js/bubble.js?rev=@@hash"></script>
+<script src="/js/shape.js?rev=@@hash"></script>
+<script src="/js/app.js?rev=@@hash"></script>
+</body>
+</html>
