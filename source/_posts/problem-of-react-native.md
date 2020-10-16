@@ -236,3 +236,17 @@ protected void onCreate(Bundle savedInstanceState) {
 但是，transform有一个问题就是，我需要在轮播每一块元素中添加输入框，在第一块区域中是可以操作的，切换到第二块区域，输入框就选不中了，不能定位到具体的元素上，就想着换一种方式，不用平移，用`marginleft`的方式来实现，换成marginleft之后就出现了这个问题
 
 折腾了好久，发现是在 `Animated.timing`中开启了原生动画`useNativeDriver: true`才导致了这个问题，原生动画并不能支持所有的属性，像`transform` 和 `opacity`可以工作，`flexbox`和` position` 就不行
+
+## 13. react-native如何查看网络请求
+
+之前查看网络请求的数据，都是通过在控制台`console.log`的方式，原来react-native也可以像浏览器一样，控制面板`Network`中查看网络请求。
+
+需要使用到这个 [react-native-debugger](https://github.com/jhen0409/react-native-debugger)
+* 首先[下载软件包](https://github.com/jhen0409/react-native-debugger/releases)，可以下载zip压缩包，解压之后里面会有 `react-native-debugger.exe`
+   **注意：React Native version <= 0.61, 就要使用 v0.10**
+* 在使用之前，要确保关闭了 `Remote JS Debugging`,关闭之后，双击`react-native-debugger.exe`打开，在开启`Remote JS Debugging`,就连上这个软件了
+* 右键点击软件，会有一个选项`Enable Network Inspect`,这就打开了网络检查，就可以在Network面板中看到发出的网络请求了
+
+!['react-native-debugger'](http://fs.eyes487.top:9999/uploads/93e7b02f1d6785ed56b0619cd5bd1355.png)
+
+`react-native-debugger`当然还有很多其他功能，就自己去发掘了
