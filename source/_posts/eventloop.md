@@ -37,7 +37,7 @@ date: 2019-10-20
 
 事件队列也分为 **宏任务**（`macrotask`) 和 **微任务**（`microtask`）
 
-![浏览器中的 EventLoop](http://fs.eyes487.top:9999/uploads/1573386573224-eventloop1.png  "图1")
+![浏览器中的 EventLoop](https://www.eyes487.top/fs/uploads/1573386573224-eventloop1.png  "图1")
 
 常见属于宏任务的有：
 * `script(整体代码)`
@@ -64,7 +64,7 @@ date: 2019-10-20
 >浏览器完成一个宏任务，在下一个宏任务执行开始前，会对页面进行重新渲染。如果存在微任务，浏览器会清空微任务之后再重新渲染。
 
 下面这张图可以说明流程
-![浏览器中的 EventLoop](http://fs.eyes487.top:9999/uploads/1580464442587-eventloop.jpg  "图2")
+![浏览器中的 EventLoop](https://www.eyes487.top/fs/uploads/1580464442587-eventloop.jpg  "图2")
 
 
 
@@ -184,7 +184,7 @@ Promise.resolve().then(() => console.log(4));
 
 事件循环会按照顺序，反复地执行。每个阶段都有一个先进先出的回调函数队列。只有一个阶段的回调函数队列清空了，该执行的回调函数都执行了，事件循环才会进入下一个阶段。
 
-![Node中的 EventLoop](http://fs.eyes487.top:9999/uploads/1573386585444-eventloop2.jpg  "图3")
+![Node中的 EventLoop](https://www.eyes487.top/fs/uploads/1573386585444-eventloop2.jpg  "图3")
 
 ### 2.2.1 timers
 

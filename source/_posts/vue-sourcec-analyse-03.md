@@ -426,7 +426,7 @@ compiler的主要作用是对每个元素节点进行扫描和解析，根据指
 compiler里面代码比较复杂，之后再虚拟dom的时候一起讲解。
 
 ## 6.总结
-![mvvm](http://fs.eyes487.top:9999/uploads/1580382085171-data.png "图1")
+![mvvm](https://www.eyes487.top/fs/uploads/1580382085171-data.png "图1")
 
 * Observer： 数据监听器，能够监听属性的变化，实现数据响应式，首先要对数据进行劫持`(getter/setter)`，一个对象对应一个`observer`
 * Watcher: 一个组件对应一个`Watcher`，每个`key`值会有一个订阅器`(Dep)`，如果key值在该组件中使用了，`Dep`就会收集当前Watcher，Watcher里面管理着更新方法`(update)`,当数据发生变化，就会触发update方法。Watcher是连接observer和compiler的桥梁。

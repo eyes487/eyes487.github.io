@@ -30,7 +30,7 @@ npm i webpack-dev-server -D
 npm run dev
 ```
 看到下面这个提示，就说明已经启动成功了，在`http://localhost:8080/`
-![webpack](http://fs.eyes487.top:9999/uploads/1589713844017-webpack9.png "图1")
+![webpack](https://www.eyes487.top/fs/uploads/1589713844017-webpack9.png "图1")
 这样之后修改页面，它就会自动帮我们刷新了。这时，会发现，dist目录下被清空了，因为现在都是通过内存来读取文件，这样反应速度会更快了。还可以在`devserver`中做一些配置项
 ```js
 //webpack.config.js

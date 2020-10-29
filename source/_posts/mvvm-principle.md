@@ -10,7 +10,7 @@ date: 2019-09-10
 简单来说，`MVVM`就是一种模式，把**数据和视图进行关联**的一种模式。最常见的就是应用于`Vue`中，实现了数据绑定和视图渲染，Vue 最独特的特性之一，是其非侵入性的响应式系统，当数据变化时，视图会做出相应的更新，当视图变化，数据也会相应更新，主要体现在Vue中双向绑定，主要通过`表单元素`设置`v-model`属性实现双向绑定。
 
 放一张从网上找的图
-![mvvm](http://fs.eyes487.top:9999/uploads/1573386600928-MVVM.png  "MVVM")
+![mvvm](https://www.eyes487.top/fs/uploads/1573386600928-MVVM.png  "MVVM")
 
 Vue中一般这样引用
 ```html
@@ -29,7 +29,7 @@ Vue中一般这样引用
 ```
 
 ## 2.响应式原理分析
-![Vue](http://fs.eyes487.top:9999/uploads/1578459289806-Vue响应式原理.jpg  "Vue")
+![Vue](https://www.eyes487.top/fs/uploads/1578459289806-Vue响应式原理.jpg  "Vue")
 
 * 1、首先通过new Vue()执行初始化，对数据进行数据劫持 `Observer`，同时执行编译模板 `Compile`
 * 2、在`Observer`中通过 `Object.defineProperty / Proxy`对数据进行劫持，其中有 `get` 和 `set`方法 ,在get中为每个key值创建一个`Dep`(依赖收集)

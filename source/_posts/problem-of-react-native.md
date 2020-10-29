@@ -93,7 +93,7 @@ native-echarts中使用echarts的办法是通过`Webview`中引用html文件实�
 
 ## 5.ios出现 Build input file cannot be found: '/Users/mac/Library/Developer/Xcode/DerivedData/jty-ceemylpddhxuyyegcppypjhihevw/Build/Products/Debug-iphonesimulator/jty.app/PlugIns/jtyTests.xctest/jtyTests'
 
-![ios问题](http://fs.eyes487.top:9999/uploads/1573386594646-ios1.jpg "图1")
+![ios问题](https://www.eyes487.top/fs/uploads/1573386594646-ios1.jpg "图1")
 
 解决方法：
 Xcode > File > Workspace Settings...
@@ -105,7 +105,7 @@ Shared Project Settings和Per-User Project Settings 中的Build System都从New 
 
 ## 6. react-native 从0.57.8升级到0.59.10，在Android中运行，出现  Could not get unknown property 'mergeResourcesProvider' for object of type com.android.build.gradle.internal.api.ApplicationVariantImpl.
 
-![Android问题](http://fs.eyes487.top:9999/uploads/1573386561035-Android1.png "图2")
+![Android问题](https://www.eyes487.top/fs/uploads/1573386561035-Android1.png "图2")
 
 解决方法：
 /android/build.gradle  改为classpath 'com.android.tools.build:gradle:3.3.0'
@@ -128,7 +128,7 @@ Shared Project Settings和Per-User Project Settings 中的Build System都从New 
     value@23:2772
     value@23:794
     value@-1
-![Stack问题](http://fs.eyes487.top:9999/uploads/1575181213971-stack.png "图3")
+![Stack问题](https://www.eyes487.top/fs/uploads/1575181213971-stack.png "图3")
 解决办法：参考的 [这里](https://github.com/facebook/react-native/issues/26007)
 
 添加如下信息在 index.js中
@@ -163,7 +163,7 @@ if (!__DEV__) {
 使用场景：`react-native 0.57.8`  `Android 9`
 我在页面中，使用`TextInput`放入表格中的每个单元格，就出现了这个问题，其他时候是没有出现这个问题的
 
-![drawable问题](http://fs.eyes487.top:9999/uploads/1576468673838-drawable.png "图4")
+![drawable问题](https://www.eyes487.top/fs/uploads/1576468673838-drawable.png "图4")
 
 解决方法： 在 `android/src/main/res/values/styles.xml` 插入这句
 ```js
@@ -180,7 +180,7 @@ if (!__DEV__) {
 ## 10. android.support.v4.content.FileProvider找不到问题
 
 我在使用 `react-native-doc-viewer`的时候遇到这个问题，因为我给项目升级了`androidX`,所以导致和这个库里面不兼容，(ps:同时这个库的sdk版本太旧，需要自己修改匹配自己的项目的才能打包)。
-![fileprovider问题](http://fs.eyes487.top:9999/uploads/08aa3bccf9f2cde1d7892884db3871ee.png)
+![fileprovider问题](https://www.eyes487.top/fs/uploads/08aa3bccf9f2cde1d7892884db3871ee.png)
 
 解决方法： 找到上图报错的文件夹，修改`android.support.v4.content.FileProvider` 为 `androidx.core.content.FileProvider`
 可以把这个库fork到自己的仓库，之后就引用自己仓库的，就不用重装依赖之后，每次都修改了
@@ -247,6 +247,6 @@ protected void onCreate(Bundle savedInstanceState) {
 * 在使用之前，要确保关闭了 `Remote JS Debugging`,关闭之后，双击`react-native-debugger.exe`打开，在开启`Remote JS Debugging`,就连上这个软件了
 * 右键点击软件，会有一个选项`Enable Network Inspect`,这就打开了网络检查，就可以在Network面板中看到发出的网络请求了
 
-!['react-native-debugger'](http://fs.eyes487.top:9999/uploads/93e7b02f1d6785ed56b0619cd5bd1355.png)
+!['react-native-debugger'](https://www.eyes487.top/fs/uploads/93e7b02f1d6785ed56b0619cd5bd1355.png)
 
 `react-native-debugger`当然还有很多其他功能，就自己去发掘了

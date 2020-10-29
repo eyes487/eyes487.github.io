@@ -43,7 +43,7 @@ npm run dev
 ## 2.目录结构
 下面是一些核心文件，以及他们的用途
 
-![目录结构](http://fs.eyes487.top:9999/uploads/1580133474890-vue-category.png "图1")
+![目录结构](https://www.eyes487.top/fs/uploads/1580133474890-vue-category.png "图1")
 ```bash
 dist- - -发布目录，所有输出文件都在里面
       （打包出的文件，关键字含义）
@@ -247,7 +247,7 @@ export default Vue
 
 ```
 就可以通过断点在浏览器中看到执行的过程了，如果想看某个方法具体执行了什么，就进入该方法查看，从开始到浏览器渲染完成，就是整个渲染流程所执行的过程。
-![Vue调试步骤](http://fs.eyes487.top:9999/uploads/1580122844391-vue-tiaoshi.png "图2")
+![Vue调试步骤](https://www.eyes487.top/fs/uploads/1580122844391-vue-tiaoshi.png "图2")
 
 Vue源码解读方法，差不多就是这样了，之后会有具体文章分析Vue的重要实现过程。
 学习源码，知道大概思路，设计思想就行了，不用太深究其细节，框架也是一个产品，里面会包含大量业务代码。

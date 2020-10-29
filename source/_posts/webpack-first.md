@@ -12,7 +12,7 @@ date: 2020-05-16
 
 > 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包工具。当 webpack 处理应用程序时，它会在内部构建一个 依赖图(dependency graph)，此依赖图会映射项目所需的每个模块，并生成一个或多个 bundle。
 
-![webpack](http://fs.eyes487.top:9999/uploads/1589608486990-webpack.png "图1")
+![webpack](https://www.eyes487.top/fs/uploads/1589608486990-webpack.png "图1")
 
 这是官网对webpack的一段解释,上面一张图是，通过webpack处理，把左边的(都可以看成是一个模块)，然后被处理成右边的这种形式。
 前端发展很快，出现了很多的新东西，但是浏览器对他们的支持又不是那么好，所以就需要webpack来打包构建等，把他们处理成浏览器支持的东西。
@@ -98,7 +98,7 @@ console.log('hello world!!!!!!!!')
 
 然后执行命令 `npx webpack`
 下面是打包之后输出的信息
-![webpack](http://fs.eyes487.top:9999/uploads/1589611109383-webpack2.png "图2")
+![webpack](https://www.eyes487.top/fs/uploads/1589611109383-webpack2.png "图2")
 
 此时，我们只是写了一个文件，并没有配置任何信息，这竟然也可以打包出来???
 
@@ -131,7 +131,7 @@ module.exports={
 大家是否有看到，上面打包输出，那张图上有一个`warining`,给出了一个警告
 大致意思是，必须设置一个`mode`，构建模式，没有设置，就会默认指定生产模式，所以代码会是压缩的
 它有下面这些值
-![webpack](http://fs.eyes487.top:9999/uploads/1589612165620-webpack-mode.png "图3")
+![webpack](https://www.eyes487.top/fs/uploads/1589612165620-webpack-mode.png "图3")
 
 这个值，你可以设置在config.js中，或者在打包的时候写入命令中`npx webpack --mode=production`
 
@@ -157,7 +157,7 @@ module.exports={
 }
 ```
 打包完之后的信息
-![webpack](http://fs.eyes487.top:9999/uploads/1589614309075-webpack3.png "图4")
+![webpack](https://www.eyes487.top/fs/uploads/1589614309075-webpack3.png "图4")
 依然只输出了一个文件，但是这个文件里包括了两个模块的代码，所以数组形式，是把多个mode打包到一个文件里面
 
 多入口打包，对象形式，一旦有`多入口`的话，就会有`多出口`，所以这里不能指定名称，可以用到`占位符`,无论是一个出口还是多出口，都推荐使用占位符
@@ -181,7 +181,7 @@ module.exports={
 }
 ```
 下面是打包结果输出
-![webpack](http://fs.eyes487.top:9999/uploads/1589618061566-webpack4.png "图5")
+![webpack](https://www.eyes487.top/fs/uploads/1589618061566-webpack4.png "图5")
 左边和右边对比，右边是修改了`other.js`之后的打包信息，可以看出，只有other.js文件的hash发生了改变，这样有利于浏览器缓存
 
 
@@ -252,7 +252,7 @@ module.exports={
 
 执行打包命令，输出打包文件，我们可以先建一个index.html文件，引入刚才的打包成功的文件，就可以看到css效果了，（下面会讲到通过plugin自动引入打包文件,这里先自己创建一个)
 
-![webpack](http://fs.eyes487.top:9999/uploads/1589622038016-webpack5.png "图6")
+![webpack](https://www.eyes487.top/fs/uploads/1589622038016-webpack5.png "图6")
 从图上可以看到，css通过style标签引入html中了
 
 #### **less-loader**
@@ -312,7 +312,7 @@ module.exports={
 }
 ```
 下面是使用方式：
-![webpack](http://fs.eyes487.top:9999/uploads/1589628351472-webpack6.png "图7")
+![webpack](https://www.eyes487.top/fs/uploads/1589628351472-webpack6.png "图7")
 
 #### **postcss-loader**
 
@@ -357,7 +357,7 @@ module.exports = {
 }
 ```
 效果图
-![webpack](http://fs.eyes487.top:9999/uploads/1589630109170-webpack7.png "图8")
+![webpack](https://www.eyes487.top/fs/uploads/1589630109170-webpack7.png "图8")
 
 ### 4.4.2 处理图片和文字
 
@@ -425,7 +425,7 @@ let ele = `<div class="${styles.iconfont}">&#xe64d;</div>
 document.write(ele)
 ```
 效果展示：
-![webpack](http://fs.eyes487.top:9999/uploads/1589709745312-webpack8.png "图9")
+![webpack](https://www.eyes487.top/fs/uploads/1589709745312-webpack8.png "图9")
 
 #### **url-loader**
 

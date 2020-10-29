@@ -230,11 +230,11 @@ const app = new Vue({
 })
 ```
 执行结果
-![初始化渲染](http://fs.eyes487.top:9999/uploads/1580824895607-vdom.gif "图1")
+![初始化渲染](https://www.eyes487.top/fs/uploads/1580824895607-vdom.gif "图1")
 
 ## 3. diff算法
 
-![同级比较](http://fs.eyes487.top:9999/uploads/1580889869180-compare.png "图2")
+![同级比较](https://www.eyes487.top/fs/uploads/1580889869180-compare.png "图2")
 
 这是一张很经典的图，出自**《React’s diff algorithm》**，Vue的diff算法也同样，即仅在同级的vnode间做diff，递归地进行同级vnode的diff，最终实现整个DOM树的更新。那同级vnode diff的细节又是怎样的呢？
 
@@ -310,7 +310,7 @@ if (isUndef(vnode.text)) { //没有文本就是元素
 
 比较两棵树最直接的方法就是双循环了，Vue中针对web场景做了特殊的**优化方式**。很多情况下我们都是在**前面**或者**后面**去追加节点，或者就是**升序**或者**降序**排列，那大概率的就是前面和后面的比较。有一个高效的方式，就是给不同节点设置`key`，就可以快速找到节点，进行判断是不是相同节点。
 
-![vdom-diff1](http://fs.eyes487.top:9999/uploads/1580893492529-vdom-diff1.png "图3")
+![vdom-diff1](https://www.eyes487.top/fs/uploads/1580893492529-vdom-diff1.png "图3")
 
 Vue中就是在新老两组vdom节点的左右两头设置了两对指针，在遍历的过程中，这几个指针都会向中间靠拢，当oldStartIdx > oldEndIdx或者newStartIdx > newEndIdx时结束循环。处理过的节点Vue会在oldVdom和newVdom中同时将它标记为已处理。
 
@@ -387,35 +387,35 @@ if (oldStartIdx > oldEndIdx) {
 
 首先，当 **oldStartVnode** 和 **newStartVnode** 或者 **oldEndVnode**和**newEndVnode** 满足同类节点，直接将该
 VNode节点进行patchVnode即可，深层次比较，节点相同的两个指针向中间移动一个，不需再遍历就完成了一次循环。如下图，
-![vdom-diff2](http://fs.eyes487.top:9999/uploads/1580895808862-vdom-diff2.png "图4")
+![vdom-diff2](https://www.eyes487.top/fs/uploads/1580895808862-vdom-diff2.png "图4")
 
 
 如果**oldStartVnode**与**newEndVnode**满足同类节点。说明**oldStartVnode**已经跑到了**oldEndVnode**
 后面去了，进行patchVnode的同时还需要将真实DOM节点移动到**oldEndVnode**的后面。这两个指针向中间移动一格。
-![vdom-diff3](http://fs.eyes487.top:9999/uploads/1580896064990-vdom-diff3.png "图5")
+![vdom-diff3](https://www.eyes487.top/fs/uploads/1580896064990-vdom-diff3.png "图5")
 
 
 如果**oldEndVnode**与**newStartVnode**满足同类节点，说明**oldEndVnode**跑到了**oldStartVnode**的前
 面，进行patchVnode的同时要将**oldEndVnode**对应DOM移动到**oldStartVnode**对应DOM的前面。这两个指针向中间移动一格。
-![vdom-diff4](http://fs.eyes487.top:9999/uploads/1580896064997-vdom-diff4.png "图6")
+![vdom-diff4](https://www.eyes487.top/fs/uploads/1580896064997-vdom-diff4.png "图6")
 
 
 如果以上情况均不符合，则在old VNode中找与**newStartVnode**满足同类节点的vnodeToMove，如果找到了，就执行patchVnode，同时将vnodeToMove对应DOM移动到**oldStartVnode**对应的DOM的前面，**newStartVnode**向后移一格，但是在oldVnode中该节点处没有指针，所以就不能移动，只能该老节点标记一下说明它已经处理过了，设置为undefined
-![vdom-diff5](http://fs.eyes487.top:9999/uploads/1580896065011-vdom-diff5.png "图7")
+![vdom-diff5](https://www.eyes487.top/fs/uploads/1580896065011-vdom-diff5.png "图7")
 
 
 当然也有可能**newStartVnode**在old VNode节点中找不到一致的key，或者是即便key相同却不是同类节点，这个时候会调用createElm创建一个新的DOM节点。
-![vdom-diff6](http://fs.eyes487.top:9999/uploads/1580896456382-vdom-diff6.png "图8")
+![vdom-diff6](https://www.eyes487.top/fs/uploads/1580896456382-vdom-diff6.png "图8")
 
 
 至此循环结束，但是我们还需要处理剩下的节点。
 
 当结束时oldStartIdx > oldEndIdx，这个时候旧的VNode节点已经遍历完了，但是新的节点还没有。说明了新的VNode节点实际上比老VNode节点多，需要将剩下的VNode对应的DOM插入到真实DOM中，此时调用addVnodes（批量调用createElm接口）。
-![vdom-diff7](http://fs.eyes487.top:9999/uploads/1580896456391-vdom-diff7.png "图9")
+![vdom-diff7](https://www.eyes487.top/fs/uploads/1580896456391-vdom-diff7.png "图9")
 
 
 但是，当结束时**newStartIdx** > **newEndIdx**时，说明新的VNode节点已经遍历完了，但是老的节点还有剩余，需要从文档中的节点删除。
-![vdom-diff8](http://fs.eyes487.top:9999/uploads/1580896456394-vdom-diff8.png "图10")
+![vdom-diff8](https://www.eyes487.top/fs/uploads/1580896456394-vdom-diff8.png "图10")
 
 至此，整个diff算法就结束了。
 

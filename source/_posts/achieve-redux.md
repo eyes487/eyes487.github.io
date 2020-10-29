@@ -14,7 +14,7 @@ date: 2020-02-26
 * State 是只读的: 唯一改变 state 的方法就是`触发 action`，action 是一个用于描述已发生事件的普通对象。
 * 使用纯函数来执行修改: 描述 action 如何改变 state tree,都编写在`reducer`中
 
-![redux工作流](http://fs.eyes487.top:9999/uploads/1583576247206-redux.jpg  "图1")
+![redux工作流](https://www.eyes487.top/fs/uploads/1583576247206-redux.jpg  "图1")
 
 上面是redux工作流的图解。
 `store`中存放数据，数据发生变化，通知页面更新。页面上`想要修改数据`，就会派发一些指令，通过`dispatch`发送`action` 给 `store`，`store`就会去查阅`Reducers`，在`Reducers`中定义了修改数据的方式，接收`之前的state`和`action`,返回`新的state`。
