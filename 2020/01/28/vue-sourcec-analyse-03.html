@@ -250,7 +250,7 @@ Vue 最独特的特性之一，是其非侵入性的响应式系统。数据模�
 
 <p>在页面渲染的时候，就会创建一个Watcher，所以一个组件只有一个Watcher，同一组件的每个key值收集的Watcher都会是同一个，所有有key值变化，都会触发整个组件的Watcher更新，但是虚拟dom和diff算法(之后会讲)会帮我们精确计算，要更新的部分。</p>
 <h2 id="5-Compiler"><a href="#5-Compiler" class="headerlink" title="5.Compiler"></a>5.Compiler</h2><p>现在整个数据响应式的流程还没有连通，初始化的时候，总得有事件会触发收集依赖吧，更新的时候也要触发重新渲染页面。<br>这些都发生在<code>compiler</code>，指令解析，渲染页面的时候，页面上有的值都会去触发get函数，如果data里的数据不管嵌套有多深，但是在页面上没有使用到，都是不会去收集的。<br>compiler的主要作用是对每个元素节点进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数。<br>compiler里面代码比较复杂，之后再虚拟dom的时候一起讲解。</p>
-<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h2><p><img src="http://fs.eyes487.top:9999/uploads/1580382085171-data.png" alt="mvvm" title="图1"></p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h2><p><img src="https://www.eyes487.top/fs/uploads/1580382085171-data.png" alt="mvvm" title="图1"></p>
 <ul>
 <li>Observer： 数据监听器，能够监听属性的变化，实现数据响应式，首先要对数据进行劫持<code>(getter/setter)</code>，一个对象对应一个<code>observer</code></li>
 <li>Watcher: 一个组件对应一个<code>Watcher</code>，每个<code>key</code>值会有一个订阅器<code>(Dep)</code>，如果key值在该组件中使用了，<code>Dep</code>就会收集当前Watcher，Watcher里面管理着更新方法<code>(update)</code>,当数据发生变化，就会触发update方法。Watcher是连接observer和compiler的桥梁。</li>

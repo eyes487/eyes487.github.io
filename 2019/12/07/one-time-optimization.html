@@ -187,7 +187,7 @@
         
         <p class="fa fa-exclamation-triangle warning">
             本文于<strong>
-                314</strong>
+                327</strong>
             天之前发表，文中内容可能已经过时。
         </p>
         
@@ -195,7 +195,7 @@
     
     <div class="post-body post-content">
         <p>👇👇👇👇👇👇👇👇👇👇👇👇👇👇 更新—-2020.06.07 👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
-<p>最近学习了http2，所以想将自己的网站也升级http2试一下，升级之后页面加载速度确实提高了，速度达到了<code>711ms</code>,<a href="https://www.eyes487.top" target="_blank" rel="noopener">查看地址</a><br><img src="http://fs.eyes487.top:9999/uploads/1591513974984-HTTP.png" alt="http2" title="http2"></p>
+<p>最近学习了http2，所以想将自己的网站也升级http2试一下，升级之后页面加载速度确实提高了，速度达到了<code>711ms</code>,<a href="https://www.eyes487.top" target="_blank" rel="noopener">查看地址</a><br><img src="https://www.eyes487.top/fs/uploads/1591513974984-HTTP.png" alt="http2" title="http2"></p>
 <p>准备工作</p>
 <ul>
 <li>域名，之前搞活动买的，挺便宜</li>
@@ -252,7 +252,7 @@
 <blockquote>
 <p>推荐谷歌的性能检测工具—<code>PageSpeed</code>,在谷歌网上商店可以找到，里面会帮你提供有哪些需要改进的地方，在优化图片中会帮你把图片压缩一下，可以直接下载下来使用</p>
 </blockquote>
-<p><img src="http://fs.eyes487.top:9999/uploads/1575897621817-request.png" alt="pagespeed测试" title="图1"></p>
+<p><img src="https://www.eyes487.top/fs/uploads/1575897621817-request.png" alt="pagespeed测试" title="图1"></p>
 <h2 id="3-Gzip传输压缩"><a href="#3-Gzip传输压缩" class="headerlink" title="3. Gzip传输压缩"></a>3. Gzip传输压缩</h2><p>在服务器开启<code>Gzip</code>压缩，可以将文件在传输的时候体积压缩<code>70%</code> 左右，所有浏览器都支持gzip解压，都是自动的。</p>
 <blockquote>
 <p>不要对图片进行压缩，首先http压缩是需要成本的，其次，采用HTTP压缩已经被过压缩的东西并不能使它更小。图片压缩不仅浪费了CPU，还有可能增大图片的体积。</p>
@@ -260,7 +260,7 @@
 <p>我使用的是 <code>nginx</code>,通过在 <code>nginx.config</code> 配置下面代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gzip on;   <span class="comment">//打开gzip</span></span><br><span class="line">gzip_min_length <span class="number">1</span>k;   <span class="comment">//当返回内容大于此值时才会使用gzip进行压缩,以K为单位,当值为0时，所有页面都进行压缩。</span></span><br><span class="line">#gzip_http_version 1.0;   //用于识别http协议的版本，早期的浏览器不支持gzip压缩，用户会看到乱码，所以为了支持前期版本加了此选项。默认在http/1.0的协议下不开启gzip压缩。</span><br><span class="line">gzip_comp_level <span class="number">2</span>;   <span class="comment">//设置gzip压缩级别，级别越底压缩速度越快文件压缩比越小，反之速度越慢文件压缩比越大</span></span><br><span class="line">gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php application/vnd.ms-fontobject font/ttf font/opentype font/x-woff image/svg+xml;   <span class="comment">//设置需要压缩的MIME类型,如果不在设置类型范围内的请求不进行压缩</span></span><br><span class="line">gzip_vary off;  <span class="comment">//是否启用应答头"Vary: Accept-Encoding"</span></span><br></pre></td></tr></table></figure>
 
-<p>设置成功之后，请求的响应头中会带有gzip字段<br><img src="http://fs.eyes487.top:9999/uploads/1575968710080-gzip.png" alt="开启压缩" title="图2"></p>
+<p>设置成功之后，请求的响应头中会带有gzip字段<br><img src="https://www.eyes487.top/fs/uploads/1575968710080-gzip.png" alt="开启压缩" title="图2"></p>
 <h2 id="4-CDN加速"><a href="#4-CDN加速" class="headerlink" title="4. CDN加速"></a>4. CDN加速</h2><p>CDN加速意思就是在用户和我们的服务器之间加一个缓存机制，通过这个缓存机制动态获取IP地址根据地理位置，让用户到最近的服务器访问。我们是不可能自己搭建CDN的，所以只有从阿里云，腾讯云之类的购买。因为我暂时不需要，所以就没有使用。(￣ˇ￣)</p>
 <h2 id="5-代码优化"><a href="#5-代码优化" class="headerlink" title="5. 代码优化"></a>5. 代码优化</h2><ul>
 <li>css应该放在页面首部，在页面生成Dom tree的时候，就可以同时渲染页面，不会发生闪屏，白屏和布局混乱。</li>
@@ -269,7 +269,7 @@
 <li>减少操作dom的次数，把多次操作变为一次操作，比如脱离文档流，隐藏元素等</li>
 <li>重排一定会重绘，更应该减少重排的发生</li>
 </ul>
-<p>下面是我用PageSpeed测试的结果，查询数据的接口，我认为没有做缓存的必要，所以就没有做缓存<br><img src="http://fs.eyes487.top:9999/uploads/1575970832530-test-performance.png" alt="pageSpeed测试" title="图3"> </p>
+<p>下面是我用PageSpeed测试的结果，查询数据的接口，我认为没有做缓存的必要，所以就没有做缓存<br><img src="https://www.eyes487.top/fs/uploads/1575970832530-test-performance.png" alt="pageSpeed测试" title="图3"> </p>
 <p>参考链接： <a href="https://juejin.im/post/5b6fa8c86fb9a0099910ac91#heading-10" target="_blank" rel="noopener">https://juejin.im/post/5b6fa8c8…</a></p>
 
     </div>

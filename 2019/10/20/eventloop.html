@@ -188,7 +188,7 @@
         
         <p class="fa fa-exclamation-triangle warning">
             本文于<strong>
-                362</strong>
+                375</strong>
             天之前发表，文中内容可能已经过时。
         </p>
         
@@ -214,7 +214,7 @@
 </li>
 </ul>
 <h2 id="1-2-事件队列"><a href="#1-2-事件队列" class="headerlink" title="1.2 事件队列"></a>1.2 事件队列</h2><p>事件队列也分为 <strong>宏任务</strong>（<code>macrotask</code>) 和 <strong>微任务</strong>（<code>microtask</code>）</p>
-<p><img src="http://fs.eyes487.top:9999/uploads/1573386573224-eventloop1.png" alt="浏览器中的 EventLoop" title="图1"></p>
+<p><img src="https://www.eyes487.top/fs/uploads/1573386573224-eventloop1.png" alt="浏览器中的 EventLoop" title="图1"></p>
 <p>常见属于宏任务的有：</p>
 <ul>
 <li><code>script(整体代码)</code></li>
@@ -243,7 +243,7 @@
 <blockquote>
 <p>浏览器完成一个宏任务，在下一个宏任务执行开始前，会对页面进行重新渲染。如果存在微任务，浏览器会清空微任务之后再重新渲染。</p>
 </blockquote>
-<p>下面这张图可以说明流程<br><img src="http://fs.eyes487.top:9999/uploads/1580464442587-eventloop.jpg" alt="浏览器中的 EventLoop" title="图2"></p>
+<p>下面这张图可以说明流程<br><img src="https://www.eyes487.top/fs/uploads/1580464442587-eventloop.jpg" alt="浏览器中的 EventLoop" title="图2"></p>
 <h2 id="1-3-示例"><a href="#1-3-示例" class="headerlink" title="1.3 示例"></a>1.3 示例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">  resolve(<span class="number">5</span>)</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">6</span>)</span><br><span class="line">  &#125;).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">7</span>)</span><br><span class="line">    </span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="number">8</span>)</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">9</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
 
 <p>正确的打印顺序是:</p>
@@ -293,7 +293,7 @@
 </blockquote>
 <p>所有同步任务执行完之后就是异步任务，process.nextTick是异步任务中最早执行的，如果想要异步任务尽快执行，就使用process.nextTick。<br>而promise的回调函数会被添加于微任务队列，追加在process.nextTick之后，也存在于本轮循环，只有等本轮循环(当前队列)执行完之后，才会进入下一队列。</p>
 <h2 id="2-2-事件循环的六个阶段"><a href="#2-2-事件循环的六个阶段" class="headerlink" title="2.2 事件循环的六个阶段"></a>2.2 事件循环的六个阶段</h2><p>事件循环会按照顺序，反复地执行。每个阶段都有一个先进先出的回调函数队列。只有一个阶段的回调函数队列清空了，该执行的回调函数都执行了，事件循环才会进入下一个阶段。</p>
-<p><img src="http://fs.eyes487.top:9999/uploads/1573386585444-eventloop2.jpg" alt="Node中的 EventLoop" title="图3"></p>
+<p><img src="https://www.eyes487.top/fs/uploads/1573386585444-eventloop2.jpg" alt="Node中的 EventLoop" title="图3"></p>
 <h3 id="2-2-1-timers"><a href="#2-2-1-timers" class="headerlink" title="2.2.1 timers"></a>2.2.1 timers</h3><p>这个是定时器阶段，处理<code>setTimeout()</code>和<code>setInterval()</code>的回调函数。进入这个阶段后，主线程会检查一下当前时间，是否满足定时器的条件。如果满足就执行回调函数，否则就离开这个阶段。</p>
 <h3 id="2-2-2-I-O-callbacks"><a href="#2-2-2-I-O-callbacks" class="headerlink" title="2.2.2 I/O callbacks"></a>2.2.2 I/O callbacks</h3><p>除了以下操作的回调函数，其他回调函数都在这个阶段执行</p>
 <ul>
