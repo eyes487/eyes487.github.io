@@ -250,3 +250,19 @@ protected void onCreate(Bundle savedInstanceState) {
 !['react-native-debugger'](https://www.eyes487.top/fs/uploads/93e7b02f1d6785ed56b0619cd5bd1355.png)
 
 `react-native-debugger`当然还有很多其他功能，就自己去发掘了
+
+## 14. react-native-vector-icons乱码不显示问题，显示的是方框中一个X
+
+react-native 0.6X版本，都可以自动link，不用手动link，但是安装了react-native-vector-icons之后，图标乱码不显示
+
+解决方法：
+* 把 `node_modules\react-native-vector-icons\Fonts`文件夹复制到 `android\app\src\main\assets\fonts` ,把文件夹名称大写要改为小写的
+* 然后在 `android/app/build.gradle` 中添加
+```js
+project.ext.vectoricons = [
+    iconFontNames: [ 'Feather.ttf','FontAwesome.ttf','AntDesign.ttf' ] // 指定要使用的字体库。
+]
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+```
+
+修改了原生文件，重启项目，就可以显示出来了
