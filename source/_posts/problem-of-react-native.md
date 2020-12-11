@@ -266,3 +266,19 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 ```
 
 修改了原生文件，重启项目，就可以显示出来了
+
+## 15. Execution failed for task ':app:mergeDexDebug'
+
+一般出现这种操作，是由于`Multidex builder`,在yaml文件找那个导入了很多无法放入单个.dex文件的软件包时，通常就会出现这种问题，因此需要启用 `multidex`
+
+说一下我的情况，`RN 0.63`在使用`react-native-pdf`的时候出现这个问题
+
+解决方法：在 `android/app/build.gradle`加入
+```js
+android {
+    defaultConfig {
+        //...
+        multiDexEnabled true
+    }
+}
+```
