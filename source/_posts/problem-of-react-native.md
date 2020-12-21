@@ -281,4 +281,9 @@ android {
         multiDexEnabled true
     }
 }
+
 ```
+
+## 16. 有时候会出现，在真机调试的时候没有问题，但是打包release之后，app会出现闪退的问题
+
+可以使用 `adb logcat AndroidRuntime:E *:S`命令，如果app发生了错误，出现闪退，在android Studio里面可以看到app运行时的错误
