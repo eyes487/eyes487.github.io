@@ -286,4 +286,19 @@ android {
 
 ## 16. 有时候会出现，在真机调试的时候没有问题，但是打包release之后，app会出现闪退的问题
 
-可以使用 `adb logcat AndroidRuntime:E *:S`命令，如果app发生了错误，出现闪退，在android Studio里面可以看到app运行时的错误
+如果app发生了错误，出现闪退，， 可以在项目目录下通过控制台使用 `adb logcat AndroidRuntime:E *:S`命令，或者在android Studio里面可以看到app运行时的错误
+
+## 17. java.lang.UnsatisfiedLinkError: Can't obtain peer field ID for class com.sun.jna.Pointer
+
+在真机调试的情况下，没有出现问题，我打包成release版本就出现散退，通过`adb logcat AndroidRuntime:E *:S`命令看到了运行时的错误，就是上面这个信息。
+出现这个问题的原因是，在打包时开启了 `def enableProguardInReleaseBuilds = true`，但是一些第三方包是不需要混淆的，所以可以配置忽略混淆第三方jar包
+
+在`android/app/proguard-rules.pro`文件中写上
+```bash
+//...
+
+# Add any project specific keep options here:
+
+-keep class com.sun.jna.** { *; }
+-keep class com.caysn.autoreplyprint.** { *; }
+```

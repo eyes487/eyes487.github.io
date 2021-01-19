@@ -161,7 +161,7 @@ console.log(bar.a); //2
 ## 4.绑定例外
 
 ### 4.1 
-* 如果把null或者undefined最为this的绑定对象传入call、apply或者bind，这些纸在调用时会被忽略。
+* 如果把null或者undefined做为this的绑定对象传入call、apply或者bind，这些值在调用时会被忽略。
 * 一种非常常见的做法是使用apply（）来展开一个数组，并当做参数传入一个函数。类似地，bind（）可以对函数进行柯里化（预先设置一些参数）
 ``` js
 function foo(a,b){
@@ -200,6 +200,23 @@ o.foo(); //3
 
 ### 4.3 软绑定 softBind()
 把this绑定到指定对象上后，但是可以使用隐式绑定和显示绑定来更改this
+```js
+if(!Function.prototype.softBind){
+    Function.prototype.softBind = function(obj){
+        var fn = this
+        var curried = [].slice.call(arguements, 1)
+        var bound = function(){
+            return  fn.apply(
+                (!this || this === (window || global))?
+                        obj : this
+                    ,curried.concat.apply(curried, arguemnets)
+            )
+        }
+        bound.prototype = Object.create(fn.prototype)
+        return bound;
+    }
+}
+```
 ```js
 function foo(){
     console.log("name: "+this.name);
