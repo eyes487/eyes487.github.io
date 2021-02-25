@@ -220,24 +220,24 @@ options: {
 }
 ```
 `useBuiltIns` 选项是`babel 7` 的新功能，这个选项告诉`babel`如何配置`@babel/polyfill`。
-它有三个参数可以使⽤用：
+它有三个参数可以使⽤：
 * entry: 需要在webpack的⼊口文件里`import "@babel/polyfill"`一次。babel会根据你的使用情况导⼊垫片，没有使用的功能不会被导⼊相应的垫片。
 * usage: 不需要import，全自动检测，但是要安装@babel/polyfill。（试验阶段）
-* false: 如果你`import"@babel/polyfill"`，它不会排除掉没有使⽤的垫⽚片，程序体积会庞⼤大。(不推荐)
+* false: 如果你`import"@babel/polyfill"`，它不会排除掉没有使⽤的垫片，程序体积会庞大。(不推荐)
 
 **这个polyfill，有一个缺点就是，它会污染全局对象，因为都是直接挂在window上的，比如在开发UI组件的时候。**
 
 
 ## @babel/plugin-transform-runtime
 
-当我们开发的是组件库，⼯工具库这些场景的时候，`polyfill`就不不适合了了，因为`polyfill`是注⼊入到全局变量量，window下的，`会污染全局环境`，所以推荐闭包⽅方式：`@babel/plugin-transform-runtime`，它不不会造成全局污染
+当我们开发的是组件库，工具库这些场景的时候，`polyfill`就不适合了，因为`polyfill`是注入到全局变量，window下的，`会污染全局环境`，所以推荐闭包⽅式：`@babel/plugin-transform-runtime`，它不会造成全局污染
 
 安装依赖
 ```bash
 npm i @babel/plugin-transform-runtime -D
 npm i @babel/runtime-corejs3 -S
 ```
-修改配置⽂文件：注释掉之前的`presets`，添加`plugins`
+修改配置文件：注释掉之前的`presets`，添加`plugins`
 ```js
 options: {
     presets: [            
@@ -291,7 +291,7 @@ module.exports = {
 ```
 开启这个选项之后，它会生成一个对应的 `.map`文件，里面表示打包文件和源代码的关系映射。
 
-它还有很多可以其他可以选择的模式，每个模式的构建速度和结果不同，信息越详细，构建速度越慢，所以需要权衡这两个方面。
+它还有很多其他可以选择的模式，每个模式的构建速度和结果不同，信息越详细，构建速度越慢，所以需要权衡这两个方面。
 如果想了解更多选项，请戳[这里](https://www.webpackjs.com/configuration/devtool/)
 
 生产环境是不建议开启sourcemap的，但是有一些特殊场景，比如要做错误解析，需要开启sourcemap的话，也不要把map文件上传到公网上，这样比较安全。
