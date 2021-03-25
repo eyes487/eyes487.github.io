@@ -184,6 +184,12 @@
 </div>
         
         
+        <p class="fa fa-exclamation-triangle warning">
+            本文于<strong>
+                306</strong>
+            天之前发表，文中内容可能已经过时。
+        </p>
+        
     </div>
     
     <div class="post-body post-content">
@@ -316,7 +322,7 @@
 <p>然后运行 <code>npm run dev:dll</code><br>打包完成，你会发现多了一个dll文件，里面有react.dll.js文件，这时已经单独打包出来了</p>
 <ul>
 <li>dll⽂件包含了⼤量模块的代码，这些模块被存放在一个数组里。用数组的索引号为ID,通过变量将自己暴露在全局中，就可以在window.xxx访问到其中的模块</li>
-<li>Manifest.json 描述了与其对应的dll.js包含了哪些模块，以及ID和路路径。</li>
+<li>Manifest.json 描述了与其对应的dll.js包含了哪些模块，以及ID和路径。</li>
 </ul>
 <p>那接下来看看如何使用??<br>在配置文件中<code>webpack.dev.config.js</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> DllReferencePlugin(&#123;</span><br><span class="line">    manifest: path.resolve(__dirname,<span class="string">"./dll/react-manifest.json"</span>)    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -329,11 +335,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i add-asset-html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
 
 <p>它会将我们打包后的 dll.js ⽂件注入到我们生成的 index.html 中。在 <code>webpack.base.config.js</code> ⽂件中进⾏更改</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> AddAssetHtmlWebpackPlugin(&#123;</span><br><span class="line">    filepath: path.resolve(__dirname, <span class="string">'../dll/react.dll.js'</span>) <span class="comment">// 对应的 dll ⽂文件路路径 </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> AddAssetHtmlWebpackPlugin(&#123;</span><br><span class="line">    filepath: path.resolve(__dirname, <span class="string">'../dll/react.dll.js'</span>) <span class="comment">// 对应的 dll 文件路径 </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>在<code>webpack5</code>中，我们使用<code>HardSourceWebpackPlugin</code>来做优化,它会缓存在硬件上，和<code>DLL</code>相比，一样的优化效果，但是使⽤却及其简单</p>
 <ul>
-<li>提供中间缓存的作⽤用</li>
+<li>提供中间缓存的作用</li>
 <li>首次构建没有太大的变化</li>
 <li>第二次构建时间就会有较大的节省</li>
 </ul>
