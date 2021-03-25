@@ -413,7 +413,7 @@ module.exports = {
 然后运行 `npm run dev:dll`
 打包完成，你会发现多了一个dll文件，里面有react.dll.js文件，这时已经单独打包出来了
 * dll⽂件包含了⼤量模块的代码，这些模块被存放在一个数组里。用数组的索引号为ID,通过变量将自己暴露在全局中，就可以在window.xxx访问到其中的模块
-* Manifest.json 描述了与其对应的dll.js包含了哪些模块，以及ID和路路径。
+* Manifest.json 描述了与其对应的dll.js包含了哪些模块，以及ID和路径。
 
 那接下来看看如何使用??
 在配置文件中`webpack.dev.config.js`
@@ -436,12 +436,12 @@ npm i add-asset-html-webpack-plugin -D
 它会将我们打包后的 dll.js ⽂件注入到我们生成的 index.html 中。在 `webpack.base.config.js` ⽂件中进⾏更改
 ```js
 new AddAssetHtmlWebpackPlugin({
-    filepath: path.resolve(__dirname, '../dll/react.dll.js') // 对应的 dll ⽂文件路路径 
+    filepath: path.resolve(__dirname, '../dll/react.dll.js') // 对应的 dll 文件路径 
 })
 ```
 
 在`webpack5`中，我们使用`HardSourceWebpackPlugin`来做优化,它会缓存在硬件上，和`DLL`相比，一样的优化效果，但是使⽤却及其简单
-* 提供中间缓存的作⽤用
+* 提供中间缓存的作用
 * 首次构建没有太大的变化
 * 第二次构建时间就会有较大的节省
 
