@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="eyes487的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <meta name="google-site-verification" content="kh2qynWK0TEziuoSJmSB1lNTaVoVXykqpgCSyD1FtWA">
+    <link rel="dns-prefetch" href="http://blog.eyes487.top">
+    <!--SEO-->
+
+<meta name="keywords" content="面试,前端">
+
+
+<meta name="description" content="下面按照面试顺序回顾这一个月经历的面试。
+1.平安科技一面
+自我介绍
+pc端和app的时间分配是多少（因为我有时做app，有时做pc端）
+前端错误监控是如何做的？如何上报？上报之后如何处理？分析...">
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+<title>
+    
+    3月面试总结 |
+    
+    eyes487的博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="eyes487的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/./favicon.ico">
+
+    
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1278192097 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1278192097%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278192097'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278192097%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+</div>
+
+
+
+
+    
+
+<script>
+(function() {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</head></html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='xm'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://blog.eyes487.top">
+                        eyes487的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa fa-html5"></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-clock-o"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="3月面试总结">
+            
+            3月面试总结
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/前端/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/前端/">前端</a> <a class="tag-link" href="/tags/面试/">面试</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2021/04/09</span>
+    </span>
+    
+    <!-- <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span> -->
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>下面按照面试顺序回顾这一个月经历的面试。</p>
+<h1 id="1-平安科技"><a href="#1-平安科技" class="headerlink" title="1.平安科技"></a>1.平安科技</h1><h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><ul>
+<li>自我介绍</li>
+<li>pc端和app的时间分配是多少（因为我有时做app，有时做pc端）</li>
+<li>前端错误监控是如何做的？如何上报？上报之后如何处理？分析还有哪些优化点？有了解过市面上比较成熟的监控方案是如何实现的吗？</li>
+<li>怎么监控页面一段时间不操作，就返回首页？</li>
+<li>如何把页面从4,5秒优化到1秒内？（webp，gzip，压缩，字体图标，http2等）webp格式如何做兼容？评价性能优化的一些工具</li>
+<li>高阶组件的缺点？react中组件通信的方式？redux的优缺点？redux原理？</li>
+<li>setState原理</li>
+<li>浏览器的事件循环机制</li>
+<li>webpack loader和plugin的区别？自己有些过什么插件吗</li>
+<li>promise的实现</li>
+<li>node中body-parser是如何实现的</li>
+<li>谈谈对stream的理解和使用场景？大文件拷贝如何做？中间会不会出现什么错误？</li>
+<li>介绍了这个团队主要是干什么的</li>
+<li>离职原因</li>
+</ul>
+<p>问题都是根据简历上写的问的，最后还问了期望薪资，说了之后就问了是年薪还是月薪，是12个月平均下来这么多吗？啊这…估计是很难要到期望薪资，平安的薪资确实很低呀。</p>
+<h2 id="网上测试（挂）"><a href="#网上测试（挂）" class="headerlink" title="网上测试（挂）"></a>网上测试（挂）</h2><p>本来约了下午5点二面，结果3点通知，网上测评挂了。网上测评果然不能随便填，题目一大串，只有一分钟时间，读题目都得花去30多秒。</p>
+<h1 id="2-编程猫"><a href="#2-编程猫" class="headerlink" title="2.编程猫"></a>2.编程猫</h1><h2 id="一面-1"><a href="#一面-1" class="headerlink" title="一面"></a>一面</h2><ul>
+<li>自我介绍</li>
+<li>如何优化页面到1秒内的？除了这些还有哪些可以优化的点</li>
+<li>对http2的了解？</li>
+<li>webpack优化打包速度？</li>
+<li>hooks规范？hooks为什么不能用在if条件中？hooks简单实现？hooks闭包问题</li>
+<li>js事件机制</li>
+<li>重排和重绘，如何避免</li>
+<li>浏览器输入URL到显示页面的过程（尽可能详细的说）</li>
+<li>css硬件加速？通过什么机制实现的</li>
+<li>React Portal</li>
+<li>了解ts吗？</li>
+<li>谈谈对react fiber的理解</li>
+<li>项目中遇到的难点</li>
+<li>平时是通过什么方式学习的</li>
+<li>有什么要问我的</li>
+</ul>
+<p>面试官挺好，答完问题之后，有遗漏的他都会补充出来，最后还聊了工作氛围和工作强度。</p>
+<h2 id="hr面"><a href="#hr面" class="headerlink" title="hr面"></a>hr面</h2><p>本来以为技术面最少的也得有两轮呀，怎么一轮面完后就到hr面了。介绍了以往的经历，为什么想要来深圳。问了期望薪资，为什么要的这个薪资。最后介绍了公司的文化，工作模式，上班时间等。具体的已经记不得了。</p>
+<p>最后给到了我的期望薪资，每天有40餐补，上班时间9-11点可以弹性，每天打卡够9个小时就行，上班地点也不太拥挤，感觉还是很不错的。</p>
+<h1 id="3-富途"><a href="#3-富途" class="headerlink" title="3.富途"></a>3.富途</h1><h2 id="一面-2"><a href="#一面-2" class="headerlink" title="一面"></a>一面</h2><ul>
+<li>自我介绍</li>
+<li>如何让元素垂直水平居中</li>
+<li>浏览器输入URL到显示页面的过程（尽可能详细的说，包括tcp三次握手的详细过程）</li>
+<li>在页面加载过程中，哪些地方是可以进行优化的（预解析，缓存，压缩，http2等）</li>
+<li>浏览器的缓存策略</li>
+<li>web安全有哪些了解（xss，csrf，点击劫持，window.opener等）</li>
+<li>一道代码输出题目</li>
+<li>爬楼梯，一次可以爬一步或者两步，有多少种方式</li>
+<li>随机打乱数组</li>
+<li>有效的括号，leetcode 20题</li>
+<li>你有什么要问我的</li>
+</ul>
+<p>回答的时候尽量详细一点，把自己知道的都说出来，上面的问题虽然很少，但是也聊了40多分钟。</p>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ul>
+<li>自我介绍</li>
+<li>如何优化页面到1秒内的？</li>
+<li>二叉树的先序遍历，层级遍历</li>
+<li>两个有序数组，相同的元素有哪些，时间复杂度是多少</li>
+<li>一副扑克牌，没有大小王，随机抽出两张，颜色一样的概率是多少</li>
+<li>三个人，命中率都为0.6，三人同时开枪，射中靶的概率</li>
+<li>设计一个微博首页分页的一个接口协议，需要传哪些参数，接口返回哪些参数</li>
+<li>https是使用的对称加密还是非对称</li>
+<li>在https的网站中，调用http接口，会出现什么问题</li>
+<li>为什么离职</li>
+<li>是从什么渠道了解到这个岗位的</li>
+<li>你有什么想要问我的</li>
+</ul>
+<p>这一面很尴尬，二叉树的层序遍历当时没有想起来（感觉这很简单啊，当时就是没想起莱怎么做），概率题也没有答对，在做算法题的时候，真的很想让面试官赶紧进行下一道题，但是还是让我做，直接对面试官说进行下一道把，他还问是遇到什么问题了吗，啊这…尴尬死了。不过面试官是真的很友善，还问我擅长什么，挑我擅长的问，还问了我一面的时候怎么样，我说感觉一面挺好的，他还问是因为题的原因吗，二面答的不好。最后他还说不要有什么心理负担，把自己擅长的展示出来就好了。本来以为这个面试会挂掉呢，没想到通过了。</p>
+<h2 id="三面"><a href="#三面" class="headerlink" title="三面"></a>三面</h2><ul>
+<li>defer和async的区别</li>
+<li>浏览器的缓存机制</li>
+<li>抛硬币，如果连续两次为正反，A胜，如果两次为反反，B胜，一直抛硬币，知道有人胜出，A的获胜概率是多少</li>
+<li>0到n，打印出7的倍数，或者包含7的数字，不能用字符串方法</li>
+<li>在数组中找出这样的数，它比它前面的数都大，比它后面的数都小</li>
+<li>给定长度为N的字符串S，要构造一个长度为N字符串T。T开始是一个空串，反复执行下列任意操作：1）从S的头部删除一个字符，加到T的尾部；2）从S的尾部删除一个字符，加到T的尾部；目标是要构造字典序尽可能小的字符串T。</li>
+</ul>
+<p>三面是现场面，所以没有做记录，现在一些问题已经想不起来了。不过如网上传言一样，富途是真的很喜欢考算法和概率题。前两面是本部门的面，三面是交叉面，所以我想可能是因为这样，没有让我问他问题吧。之前还以为没有让我问他问题就让我回去，是我凉了呢。</p>
+<h2 id="hr面-1"><a href="#hr面-1" class="headerlink" title="hr面"></a>hr面</h2><p>问了之前面试的感受，为什么来深圳，以往的工作经历，在工作中的成长等。然后介绍了公司的一些情况。问了还有没有其他offer，还有什么面试在进行，如果拿了其他offer，期望薪资就比较好谈 ，最后也给到了我的期望薪资。这家的做的技术我是比较喜欢的，同时里面还有很多炒股的大牛可以交流，总体感觉是很不错的。</p>
+<h1 id="4-字节"><a href="#4-字节" class="headerlink" title="4.字节"></a>4.字节</h1><h2 id="一面-3"><a href="#一面-3" class="headerlink" title="一面"></a>一面</h2><ul>
+<li>自我介绍</li>
+<li>大文件上传是如何做的？还提出了有哪些可以优化的点</li>
+<li>前端错误上报是如何做的？sourcemap解析会遇到什么错误吗？</li>
+<li>如何优化页面的？http2为什么可以让页面加载更快？页面的静态资源的并发量是多少</li>
+<li>中间件的概念？用过哪些常用的中间件？为什么要使用中间件的方式</li>
+<li>react-router 路由的实现方式？spa对应的懒加载是如何实现的？</li>
+<li>webpack如何让构建更加合理？webpack拆分模块的依据？代码怎么实现</li>
+<li>一道this指向的代码输出题</li>
+<li>一道定时器和promise的代码输出题</li>
+<li>改变浏览器的宽度，div的宽高比依旧是等比例的</li>
+<li>leetcode 118题</li>
+<li>你有什么想问我的？还了解了在现在团队所担任的角色</li>
+</ul>
+<h2 id="二面-1"><a href="#二面-1" class="headerlink" title="二面"></a>二面</h2><ul>
+<li>自我介绍</li>
+<li>如何优化页面的？http2对整个性能的优化体现在哪里</li>
+<li>了解微前端吗？</li>
+<li>使用react-native的时候遇到的一些难点</li>
+<li>为什么没有使用flutter，或者hybrid等</li>
+<li>浏览器输入URL到显示页面的过程？浏览器的缓存</li>
+<li>实现debounce方法</li>
+<li>有了解过flutter吗？和react-native的区别</li>
+<li>leetcode 5题，时间复杂度是多少</li>
+<li>mysql和redis的区别</li>
+<li>你在哪个项目上有做的比较好的地方</li>
+<li>Java和javascript的区别是什么 （啊这…)</li>
+<li>css中的position，有哪些值，区别</li>
+<li>react中dom-diff算法</li>
+<li>你有什么想问我的？</li>
+</ul>
+<h2 id="三面（挂）"><a href="#三面（挂）" class="headerlink" title="三面（挂）"></a>三面（挂）</h2><ul>
+<li>自我介绍</li>
+<li>主要了解了公司是做什么的，之前的项目，项目分工</li>
+<li>项目中遇到的一些难点</li>
+<li>代码题：获取一个页面中，标签出现次数最多的标签</li>
+</ul>
+<p>字节的面试反馈很快，面完之后，十分钟左右就知道结果了,但是安排面试每次都安排到了下周，总共经历了三周。这次面试的是tiktok部门，hr反馈说可能业务不太合适（要是知道三面全问项目，我就好好复习一下项目，包装一下了，555…)，然后又推荐到了抖音部门，说这边hc会多一些，最后想想其实他们业务也相差不多，也不一定能面过，就拒绝了。</p>
+<h1 id="5-滴滴"><a href="#5-滴滴" class="headerlink" title="5.滴滴"></a>5.滴滴</h1><h2 id="一面（挂）"><a href="#一面（挂）" class="headerlink" title="一面（挂）"></a>一面（挂）</h2><ul>
+<li>自我介绍</li>
+<li>大文件上传如何做的？计算hash的时候内存占用的问题</li>
+<li>前端错误上报？与市面上的其他工具进行对比</li>
+<li>react-native如何集成Java包的</li>
+<li>一道代码输出题</li>
+<li>for in 和 for of的区别</li>
+<li>浏览器的事件循环？为什么会有宏任务和微任务两种队列</li>
+<li>进程和线程的区别？多进程 等等</li>
+<li>webpack主要是为了解决什么问题？怎么实现的tree sharking，在es6之前可以做到tree sharking吗</li>
+<li>javascript模块化发展的一些过程…</li>
+<li>什么是文档流？有哪些脱离文档流的方式</li>
+<li>浏览器的渲染有哪些阶段</li>
+<li>怎么做css位移动画的</li>
+</ul>
+<p>感觉上面问的这些问题也不是很难，但是没有回答好，为时晚矣。当时字节的面试也还没有完，就重心都在字节上了，想着字节比较考算法，还在刷leetcode，哎…</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>面试花费了一个月，面试真是太累了，不想面试了，下次再去心仪的公司吧。这次面试中也发现了一些问题，项目是非常重要的，平时工作中一定要多注意积累，项目中有亮点才能够通过面试呀。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://blog.eyes487.top" target="_blank">eyes487的博客</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/10/10/problem-of-react-native-02.html" class="next-post btn btn-default" title='Android隐藏软键盘'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Android隐藏软键盘</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+    <script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-平安科技"><span class="toc-text">1.平安科技</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一面"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网上测试（挂）"><span class="toc-text">网上测试（挂）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-编程猫"><span class="toc-text">2.编程猫</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一面-1"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hr面"><span class="toc-text">hr面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-富途"><span class="toc-text">3.富途</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一面-2"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二面"><span class="toc-text">二面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三面"><span class="toc-text">三面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hr面-1"><span class="toc-text">hr面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-字节"><span class="toc-text">4.字节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一面-3"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二面-1"><span class="toc-text">二面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三面（挂）"><span class="toc-text">三面（挂）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-滴滴"><span class="toc-text">5.滴滴</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一面（挂）"><span class="toc-text">一面（挂）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2019
+                </span> |
+                <span>
+                   哈哈哈
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/js/line.js?rev=@@hash"></script>
+<script src="/js/bubble.js?rev=@@hash"></script>
+<script src="/js/shape.js?rev=@@hash"></script>
+<script src="/js/app.js?rev=@@hash"></script>
+</body>
+</html>
